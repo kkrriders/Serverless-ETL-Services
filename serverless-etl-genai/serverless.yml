@@ -1,0 +1,67 @@
+service: serverless-etl-genai
+
+provider:
+  name: azure
+  region: ${opt:region, 'East US'}
+  runtime: nodejs18.x
+  os: windows
+  environment:
+    MONGODB_URI: ${env:MONGODB_URI}
+    OPENAI_API_KEY: ${env:OPENAI_API_KEY}
+    AZURE_STORAGE_CONNECTION_STRING: ${env:AZURE_STORAGE_CONNECTION_STRING}
+    NODE_ENV: ${env:NODE_ENV, 'development'}
+
+plugins:
+  - serverless-azure-functions
+  - serverless-offline
+
+package:
+  exclude:
+    - node_modules/**
+    - .gitignore
+    - .git/**
+    - tests/**
+    - mock/**
+    - docs/**
+
+functions:
+  extract:
+    handler: src/handlers/extractHandler.extract
+    events:
+      - http:
+          method: GET
+          path: /extract
+          cors: true
+
+  transform:
+    handler: src/handlers/transformHandler.transform
+    events:
+      - http:
+          method: POST
+          path: /transform
+          cors: true
+
+  load:
+    handler: src/handlers/loadHandler.load
+    events:
+      - http:
+          method: POST
+          path: /load
+          cors: true
+
+  orchestrator:
+    handler: src/handlers/orchestratorHandler.orchestrate
+    events:
+      - http:
+          method: POST
+          path: /orchestrate
+          cors: true
+      - timer:
+          schedule: 0 */1 * * * *  # Run every hour
+
+custom:
+  azure:
+    subscriptionId: ${env:AZURE_SUBSCRIPTION_ID}
+    resourceGroup: ${env:AZURE_RESOURCE_GROUP, 'serverless-etl-genai-rg'}
+    appName: ${env:AZURE_APP_NAME, 'serverless-etl-genai'}
+    stage: ${opt:stage, 'dev'} 
