@@ -1,34 +1,37 @@
-const { OpenAI } = require('openai');
+const axios = require('axios');
 const logger = require('./logger');
 const { config } = require('../config/config');
 
-// Create an OpenAI client instance
-const openai = new OpenAI({ apiKey: config.openai.apiKey });
-
 /**
- * Generate text using OpenAI GPT model
+ * Generate text using Ollama's Mistral model
  * @param {string} prompt - The prompt to generate text from
  * @param {Object} options - Additional options for text generation
  * @returns {Promise<string>} The generated text
  */
 async function generateText(prompt, options = {}) {
   try {
-    const response = await openai.chat.completions.create({
-      model: options.model || config.openai.model,
-      messages: [{ role: 'user', content: prompt }],
-      max_tokens: options.maxTokens || config.openai.maxTokens,
-      temperature: options.temperature || config.openai.temperature,
+    const ollamaEndpoint = config.ollama.endpoint || 'http://localhost:11434/api/generate';
+    
+    const response = await axios.post(ollamaEndpoint, {
+      model: options.model || config.ollama.model,
+      prompt: prompt,
+      options: {
+        temperature: options.temperature || config.ollama.temperature,
+        num_predict: options.maxTokens || config.ollama.maxTokens,
+      },
+      stream: false
     });
 
-    return response.choices[0].message.content;
+    // Return the generated text
+    return response.data.response;
   } catch (error) {
-    logger.error(`Error generating text: ${error.message}`);
+    logger.error(`Error generating text with Ollama: ${error.message}`);
     throw error;
   }
 }
 
 /**
- * Enrich data using OpenAI
+ * Enrich data using Ollama
  * @param {Object} data - The data to enrich
  * @param {string} instruction - The instruction for enrichment
  * @returns {Promise<Object>} The enriched data

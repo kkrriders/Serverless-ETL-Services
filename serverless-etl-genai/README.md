@@ -1,6 +1,6 @@
 # Serverless ETL Service with Generative AI
 
-A serverless ETL (Extract, Transform, Load) service with generative AI capabilities built on Azure Functions, MongoDB, and OpenAI.
+A serverless ETL (Extract, Transform, Load) service with generative AI capabilities built on Azure Functions, MongoDB, and Ollama with the Mistral model.
 
 ## Table of Contents
 
@@ -9,6 +9,7 @@ A serverless ETL (Extract, Transform, Load) service with generative AI capabilit
 - [Architecture](#architecture)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
+- [Local Development](#local-development)
 - [Configuration](#configuration)
 - [Usage](#usage)
   - [Extract](#extract)
@@ -28,7 +29,7 @@ This service provides a scalable, serverless ETL pipeline with integrated genera
 - **Serverless Architecture**: Built on Azure Functions for scalable, event-driven processing
 - **Flexible Data Sources**: Extract data from APIs, MongoDB, and Azure Blob Storage
 - **Powerful Transformations**: Clean, validate, and transform data
-- **Generative AI Integration**: Enrich data using OpenAI's powerful models
+- **Generative AI Integration**: Enrich data using Ollama with the Mistral model
 - **Multiple Destinations**: Load data to MongoDB or Azure Blob Storage
 - **End-to-End Pipeline**: Orchestrated ETL process or individual components
 
@@ -46,7 +47,7 @@ The service follows a modular architecture with these main components:
 - Node.js (v14 or higher)
 - Azure Subscription
 - MongoDB Database
-- OpenAI API Key
+- Ollama running locally or remotely with the Mistral model
 
 ## Installation
 
@@ -67,6 +68,63 @@ The service follows a modular architecture with these main components:
    # Edit .env file with your configuration
    ```
 
+4. Install and run Ollama with Mistral:
+   - Visit [Ollama's website](https://ollama.ai/) to download and install Ollama
+   - Pull the Mistral model:
+     ```bash
+     ollama pull mistral
+     ```
+   - Run Ollama server:
+     ```bash
+     ollama serve
+     ```
+   - Verify it's working by testing the model:
+     ```bash
+     curl -X POST http://localhost:11434/api/generate -d '{"model": "mistral", "prompt": "Hello, how are you?", "stream": false}'
+     ```
+
+## Local Development
+
+After installation, you can run the project locally:
+
+1. Start the local development server:
+   ```bash
+   npm run dev
+   ```
+
+2. The server will be available at http://localhost:3000 with these endpoints:
+   - POST /extract
+   - POST /transform
+   - POST /load
+   - POST /orchestrate
+
+3. You can test the functionality using tools like curl, Postman, or any HTTP client.
+
+Example using curl:
+```bash
+curl -X POST http://localhost:3000/orchestrate \
+  -H "Content-Type: application/json" \
+  -d '{
+    "source": {
+      "type": "api",
+      "url": "https://jsonplaceholder.typicode.com/users"
+    },
+    "transformations": {
+      "clean": {
+        "removeEmpty": true
+      },
+      "enrich": {
+        "instruction": "Generate a personalized greeting for each user",
+        "fields": ["name"]
+      }
+    },
+    "destination": {
+      "type": "mongodb",
+      "collection": "enriched_users"
+    }
+  }'
+```
+
 ## Configuration
 
 Create a `.env` file with the following variables:
@@ -75,9 +133,11 @@ Create a `.env` file with the following variables:
 # MongoDB Configuration
 MONGODB_URI=mongodb://username:password@hostname:port/database
 
-# OpenAI Configuration
-OPENAI_API_KEY=your_openai_api_key
-OPENAI_MODEL=gpt-4
+# Ollama Configuration
+OLLAMA_ENDPOINT=http://localhost:11434/api/generate
+OLLAMA_MODEL=mistral
+OLLAMA_MAX_TOKENS=2048
+OLLAMA_TEMPERATURE=0.5
 
 # Azure Configuration
 AZURE_STORAGE_CONNECTION_STRING=your_azure_storage_connection_string
@@ -249,4 +309,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-This project is licensed under the MIT License. 
+This project is licensed under the MIT License.

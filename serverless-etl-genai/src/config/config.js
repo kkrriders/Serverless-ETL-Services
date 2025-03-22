@@ -14,12 +14,12 @@ const config = {
     },
   },
   
-  // OpenAI configuration
-  openai: {
-    apiKey: process.env.OPENAI_API_KEY,
-    model: process.env.OPENAI_MODEL || 'gpt-4',
-    maxTokens: parseInt(process.env.OPENAI_MAX_TOKENS || '1000', 10),
-    temperature: parseFloat(process.env.OPENAI_TEMPERATURE || '0.5'),
+  // Ollama configuration
+  ollama: {
+    endpoint: process.env.OLLAMA_ENDPOINT || 'http://localhost:11434/api/generate',
+    model: process.env.OLLAMA_MODEL || 'mistral',
+    maxTokens: parseInt(process.env.OLLAMA_MAX_TOKENS || '2048', 10),
+    temperature: parseFloat(process.env.OLLAMA_TEMPERATURE || '0.5'),
   },
   
   // Azure Blob Storage configuration
@@ -52,9 +52,9 @@ function validateConfig() {
     throw new Error('MONGODB_URI environment variable is required');
   }
   
-  // OpenAI validation
-  if (!config.openai.apiKey) {
-    throw new Error('OPENAI_API_KEY environment variable is required');
+  // Validate Ollama model
+  if (!config.ollama.model) {
+    throw new Error('OLLAMA_MODEL environment variable is required');
   }
   
   // Azure Storage validation

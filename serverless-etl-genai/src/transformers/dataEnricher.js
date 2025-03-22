@@ -1,5 +1,5 @@
 const logger = require('../utils/logger');
-const { enrichData: enrichWithOpenAI } = require('../utils/openaiClient');
+const { enrichData: enrichWithLLM } = require('../utils/ollamaClient');
 
 /**
  * Enrich data with additional information using GenAI
@@ -78,7 +78,7 @@ async function processItem(item, fields, instruction) {
       : item;
     
     // Enrich the subset
-    const enrichedSubset = await enrichWithOpenAI(subset, instruction);
+    const enrichedSubset = await enrichWithLLM(subset, instruction);
     
     // Merge the enriched subset with the original item
     return { ...item, ...enrichedSubset };
@@ -113,7 +113,7 @@ async function generateSummaries(data, textFields, maxLength = 100) {
           
           for (const field of textFields) {
             if (field in item && typeof item[field] === 'string' && item[field].length > maxLength) {
-              const summary = await enrichWithOpenAI({ text: item[field] }, instruction);
+              const summary = await enrichWithLLM({ text: item[field] }, instruction);
               result[`${field}_summary`] = summary.summary || summary.text || item[field];
             }
           }
@@ -129,7 +129,7 @@ async function generateSummaries(data, textFields, maxLength = 100) {
       
       for (const field of textFields) {
         if (field in data && typeof data[field] === 'string' && data[field].length > maxLength) {
-          const summary = await enrichWithOpenAI({ text: data[field] }, instruction);
+          const summary = await enrichWithLLM({ text: data[field] }, instruction);
           result[`${field}_summary`] = summary.summary || summary.text || data[field];
         }
       }
@@ -174,7 +174,7 @@ async function categorizeData(data, categories, textField) {
         data.map(async (item) => {
           if (textField in item && typeof item[textField] === 'string') {
             const result = { ...item };
-            const categorization = await enrichWithOpenAI({ text: item[textField] }, instruction);
+            const categorization = await enrichWithLLM({ text: item[textField] }, instruction);
             
             // The model should return just the category name
             let category = categorization;
@@ -201,7 +201,7 @@ async function categorizeData(data, categories, textField) {
     } else if (typeof data === 'object' && data !== null) {
       if (textField in data && typeof data[textField] === 'string') {
         const result = { ...data };
-        const categorization = await enrichWithOpenAI({ text: data[textField] }, instruction);
+        const categorization = await enrichWithLLM({ text: data[textField] }, instruction);
         
         // The model should return just the category name
         let category = categorization;
