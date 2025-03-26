@@ -3,6 +3,7 @@
  */
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const logger = require('./utils/logger');
 const routes = require('./routes');
 const { validateConfig } = require('./config/config');
@@ -15,12 +16,37 @@ require('dotenv').config();
 const app = express();
 
 // Validate configuration
-validateConfig();
+try {
+  validateConfig();
+} catch (error) {
+  logger.warn(`Configuration validation warning: ${error.message}`);
+  logger.info('Continuing with available configuration...');
+}
 
 // Middleware
 app.use(cors());
-app.use(express.json());
+
+// JSON parsing with error handling
+app.use(express.json({
+  limit: '10mb',
+  verify: (req, res, buf) => {
+    try {
+      JSON.parse(buf);
+    } catch (e) {
+      res.status(400).json({ 
+        success: false, 
+        error: 'Invalid JSON payload',
+        message: e.message 
+      });
+      throw new Error('Invalid JSON');
+    }
+  }
+}));
+
 app.use(express.urlencoded({ extended: true }));
+
+// Static files (if needed for documentation)
+app.use('/docs', express.static(path.join(__dirname, '../docs')));
 
 // Request logging middleware
 app.use((req, res, next) => {
@@ -34,9 +60,15 @@ app.use('/', routes);
 // Error handling middleware
 app.use((err, req, res, next) => {
   logger.error(`Error: ${err.message}`);
+  
+  // Don't send error details in production
+  const errorDetails = process.env.NODE_ENV === 'production' 
+    ? 'An error occurred processing your request' 
+    : err.message;
+  
   res.status(err.status || 500).json({
     success: false,
-    error: err.message,
+    error: errorDetails
   });
 });
 
@@ -48,8 +80,15 @@ async function startServer() {
   try {
     // Connect to MongoDB if URI is provided
     if (process.env.MONGODB_URI) {
-      await connectToDatabase();
-      logger.info('Connected to MongoDB');
+      try {
+        await connectToDatabase();
+        logger.info('Connected to MongoDB');
+      } catch (dbError) {
+        logger.error(`Failed to connect to MongoDB: ${dbError.message}`);
+        logger.info('Continuing without database connection...');
+      }
+    } else {
+      logger.warn('MONGODB_URI not provided. Running without database connection');
     }
 
     // Start the Express server
@@ -72,5 +111,16 @@ async function startServer() {
 if (require.main === module) {
   startServer();
 }
+
+// Enable graceful shutdown
+process.on('SIGTERM', () => {
+  logger.info('SIGTERM received, shutting down gracefully');
+  process.exit(0);
+});
+
+process.on('SIGINT', () => {
+  logger.info('SIGINT received, shutting down gracefully');
+  process.exit(0);
+});
 
 module.exports = app; 

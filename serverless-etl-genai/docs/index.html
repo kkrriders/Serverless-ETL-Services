@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serverless ETL Service with Generative AI</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+        }
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .endpoint {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            background-color: #ecf0f1;
+        }
+        .method {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .path {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .button {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Serverless ETL Service with Generative AI</h1>
+    <p>This service provides a scalable, serverless ETL pipeline with integrated generative AI capabilities. It allows you to extract data from various sources, transform and enrich it using AI (Ollama with Mistral model), and load it into different destinations.</p>
+
+    <h2>Available Endpoints</h2>
+
+    <div class="endpoint">
+        <p><span class="method">GET</span> <span class="path">/health</span></p>
+        <p>Check if the service is running.</p>
+        <p>Example: <code>curl http://localhost:3000/health</code></p>
+    </div>
+
+    <div class="endpoint">
+        <p><span class="method">POST</span> <span class="path">/extract</span></p>
+        <p>Extract data from various sources.</p>
+        <pre><code>{
+  "source": {
+    "type": "api",
+    "url": "https://api.example.com/data",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer token"
+    }
+  },
+  "options": {
+    "saveToDb": true
+  }
+}</code></pre>
+    </div>
+
+    <div class="endpoint">
+        <p><span class="method">POST</span> <span class="path">/transform</span></p>
+        <p>Transform and enrich data using Ollama with Mistral model.</p>
+        <pre><code>{
+  "data": [...] || "recordId": "record-id-from-extract",
+  "transformations": {
+    "clean": {
+      "removeEmpty": true,
+      "textFields": ["name", "description"]
+    },
+    "enrich": {
+      "instruction": "Analyze the sentiment of each review and add a score.",
+      "fields": ["content"]
+    }
+  }
+}</code></pre>
+    </div>
+
+    <div class="endpoint">
+        <p><span class="method">POST</span> <span class="path">/load</span></p>
+        <p>Load data to a destination.</p>
+        <pre><code>{
+  "data": [...] || "recordId": "record-id-from-transform",
+  "destination": {
+    "type": "mongodb",
+    "collection": "processed_data",
+    "upsert": true,
+    "upsertKey": "id"
+  }
+}</code></pre>
+    </div>
+
+    <div class="endpoint">
+        <p><span class="method">POST</span> <span class="path">/orchestrate</span></p>
+        <p>Run the complete ETL pipeline.</p>
+        <pre><code>{
+  "source": {
+    "type": "api",
+    "url": "https://api.example.com/data"
+  },
+  "transformations": {
+    "clean": { "removeEmpty": true },
+    "enrich": {
+      "instruction": "Generate a summary for each item.",
+      "fields": ["description"]
+    }
+  },
+  "destination": {
+    "type": "mongodb",
+    "collection": "processed_data"
+  }
+}</code></pre>
+    </div>
+
+    <a href="https://github.com/yourusername/serverless-etl-genai" class="button">View on GitHub</a>
+</body>
+</html> 

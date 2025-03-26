@@ -14,30 +14,46 @@ const { config } = require('../config/config');
  */
 function validateApiKey(req, res, next) {
   try {
-    // Skip authentication in development mode
-    if (process.env.NODE_ENV === 'development' && !process.env.REQUIRE_AUTH) {
+    // Skip authentication in development mode if specified
+    if (process.env.NODE_ENV === 'development' && process.env.REQUIRE_AUTH !== 'true') {
+      logger.debug('Authentication skipped in development mode');
       return next();
     }
 
     // Get the API key from the request headers
-    const apiKey = req.headers['x-api-key'];
+    // We accept both 'x-api-key' and 'authorization' headers
+    const apiKey = req.headers['x-api-key'] || 
+                  (req.headers.authorization && req.headers.authorization.startsWith('Bearer ') 
+                    ? req.headers.authorization.split(' ')[1] 
+                    : null);
 
     // Check if the API key is provided
     if (!apiKey) {
-      logger.warn('API key missing');
+      logger.warn(`API key missing - ${req.method} ${req.originalUrl}`);
       return res.status(401).json({
         success: false,
-        error: 'API key is required',
+        error: 'Authentication required',
+        message: 'Please provide an API key using the X-API-Key header'
       });
     }
 
     // Validate the API key
     // In a real application, you would validate against a database or secret store
-    if (apiKey !== process.env.API_KEY) {
-      logger.warn('Invalid API key');
+    const configuredApiKey = process.env.API_KEY;
+    
+    if (!configuredApiKey) {
+      logger.error('API_KEY environment variable is not set');
+      return res.status(500).json({
+        success: false,
+        error: 'Authentication configuration error'
+      });
+    }
+    
+    if (apiKey !== configuredApiKey) {
+      logger.warn(`Invalid API key used - ${req.method} ${req.originalUrl}`);
       return res.status(403).json({
         success: false,
-        error: 'Invalid API key',
+        error: 'Invalid API key'
       });
     }
 
@@ -48,6 +64,7 @@ function validateApiKey(req, res, next) {
     return res.status(500).json({
       success: false,
       error: 'Authentication error',
+      message: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 }
