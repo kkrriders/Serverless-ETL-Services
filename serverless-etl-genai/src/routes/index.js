@@ -10,9 +10,19 @@ const { orchestrate } = require('../handlers/orchestratorHandler');
 const { validateApiKey, limiter } = require('../middleware/auth');
 const { checkOllamaAvailability } = require('../utils/ollamaClient');
 const { catchAsync } = require('../utils/errorHandler');
+const monitor = require('../utils/monitor');
 const logger = require('../utils/logger');
 
 const router = express.Router();
+
+// Request tracking middleware
+router.use((req, res, next) => {
+  const startTime = Date.now();
+  res.on('finish', () => {
+    monitor.trackRequest(req, res, startTime);
+  });
+  next();
+});
 
 // Root path - redirect to documentation
 router.get('/', (req, res) => {
@@ -32,6 +42,12 @@ router.get('/health', catchAsync(async (req, res) => {
     version: process.env.npm_package_version || '1.0.0'
   });
 }));
+
+// Metrics endpoint (protected)
+router.get('/metrics', validateApiKey, (req, res) => {
+  const metrics = monitor.getHealthMetrics();
+  res.status(200).json(metrics);
+});
 
 // Protected routes with rate limiting and authentication
 router.use(limiter);
@@ -65,6 +81,24 @@ router.post('/orchestrate', catchAsync(async (req, res) => {
   res.status(result.status).json(result.body);
 }));
 
+// Reset metrics endpoint (admin only)
+router.post('/admin/reset-metrics', validateApiKey, (req, res) => {
+  // Extra validation to ensure only admins can reset metrics
+  if (req.headers['x-admin-key'] !== process.env.ADMIN_API_KEY) {
+    return res.status(403).json({
+      success: false,
+      error: 'Forbidden',
+      message: 'Admin API key required'
+    });
+  }
+  
+  monitor.resetMetrics();
+  res.status(200).json({
+    success: true,
+    message: 'Metrics reset successfully'
+  });
+});
+
 // 404 handler - must be last
 router.use('*', (req, res) => {
   logger.warn(`404 Not Found: ${req.originalUrl}`);
@@ -73,6 +107,7 @@ router.use('*', (req, res) => {
     error: `Resource not found: ${req.originalUrl}`,
     availableEndpoints: [
       'GET /health',
+      'GET /metrics',
       'POST /extract',
       'POST /transform',
       'POST /load',

@@ -6,146 +6,377 @@
     <title>Serverless ETL Service with Generative AI</title>
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
         }
+        header {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
         h1 {
             color: #2c3e50;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
+            margin-top: 0;
         }
         h2 {
             color: #3498db;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
             margin-top: 30px;
         }
-        code {
-            background-color: #f5f5f5;
-            padding: 2px 5px;
+        h3 {
+            color: #2980b9;
+        }
+        .endpoint {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 5px 5px 0;
+        }
+        .method {
+            display: inline-block;
+            padding: 5px 10px;
             border-radius: 3px;
-            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+            font-weight: bold;
+            margin-right: 10px;
+            min-width: 60px;
+            text-align: center;
+        }
+        .get {
+            background-color: #61affe;
+            color: white;
+        }
+        .post {
+            background-color: #49cc90;
+            color: white;
         }
         pre {
-            background-color: #f5f5f5;
+            background-color: #f6f8fa;
             padding: 15px;
             border-radius: 5px;
             overflow-x: auto;
         }
-        .endpoint {
-            margin: 20px 0;
-            padding: 15px;
-            border-left: 4px solid #3498db;
-            background-color: #ecf0f1;
+        code {
+            font-family: 'Courier New', Courier, monospace;
         }
-        .method {
-            font-weight: bold;
-            color: #e74c3c;
-        }
-        .path {
-            font-weight: bold;
-            color: #2c3e50;
-        }
-        .button {
+        .btn {
             display: inline-block;
             background-color: #3498db;
             color: white;
             padding: 10px 15px;
             text-decoration: none;
-            border-radius: 4px;
-            margin-top: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
-        .button:hover {
+        .btn:hover {
             background-color: #2980b9;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .note {
+            background-color: #fff8dc;
+            padding: 10px;
+            border-left: 4px solid #ffd700;
+            margin: 15px 0;
         }
     </style>
 </head>
 <body>
-    <h1>Serverless ETL Service with Generative AI</h1>
-    <p>This service provides a scalable, serverless ETL pipeline with integrated generative AI capabilities. It allows you to extract data from various sources, transform and enrich it using AI (Ollama with Mistral model), and load it into different destinations.</p>
+    <header>
+        <h1>Serverless ETL Service with Generative AI</h1>
+        <p>A scalable, serverless ETL (Extract, Transform, Load) service with generative AI capabilities built on Azure Functions, MongoDB, and Ollama with the Mistral model.</p>
+    </header>
 
-    <h2>Available Endpoints</h2>
+    <section class="section">
+        <h2>Overview</h2>
+        <p>This service provides a scalable, serverless ETL pipeline with integrated generative AI capabilities. It allows you to extract data from various sources, transform and enrich it using AI via Ollama with Mistral, and load it into different destinations.</p>
+    </section>
 
-    <div class="endpoint">
-        <p><span class="method">GET</span> <span class="path">/health</span></p>
-        <p>Check if the service is running.</p>
-        <p>Example: <code>curl http://localhost:3000/health</code></p>
-    </div>
+    <section class="section">
+        <h2>Available Endpoints</h2>
 
-    <div class="endpoint">
-        <p><span class="method">POST</span> <span class="path">/extract</span></p>
-        <p>Extract data from various sources.</p>
-        <pre><code>{
+        <div class="endpoint">
+            <span class="method get">GET</span>
+            <strong>/health</strong>
+            <p>Checks if the service is running and if the Ollama service is available.</p>
+            <h3>Example Response:</h3>
+            <pre><code>{
+  "status": "OK",
+  "message": "Service is running",
+  "ollama": "available",
+  "timestamp": "2023-03-21T12:30:45.123Z",
+  "version": "1.0.0"
+}</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <span class="method get">GET</span>
+            <strong>/metrics</strong>
+            <p>Provides detailed metrics about the service performance and health (requires API key).</p>
+            <h3>Example Response:</h3>
+            <pre><code>{
+  "status": "UP",
+  "version": "1.0.0",
+  "timestamp": "2023-03-21T12:30:45.123Z",
+  "uptime": {
+    "ms": 3600000,
+    "formatted": "0d 1h 0m 0s"
+  },
+  "requests": {
+    "total": 125,
+    "successful": 120,
+    "failed": 5,
+    "successRate": "96.00%"
+  },
+  "performance": {
+    "responseTime": {
+      "avg": "85ms",
+      "min": "15ms",
+      "max": "350ms"
+    }
+  },
+  "ollama": {
+    "calls": 50,
+    "successful": 48,
+    "failed": 2,
+    "avgTime": "680ms",
+    "successRate": "96.00%"
+  },
+  "system": {
+    "memory": {
+      "total": "16.0 GB",
+      "free": "8.5 GB",
+      "used": "7.5 GB",
+      "usedPercent": "46.88%",
+      "process": "125.0 MB"
+    },
+    "cpu": {
+      "load": "1.25",
+      "cores": 8
+    }
+  }
+}</code></pre>
+        </div>
+
+        <div class="endpoint">
+            <span class="method post">POST</span>
+            <strong>/extract</strong>
+            <p>Extracts data from various sources (API, MongoDB, Azure Blob Storage).</p>
+            <h3>Example Request:</h3>
+            <pre><code>{
   "source": {
     "type": "api",
-    "url": "https://api.example.com/data",
-    "method": "GET",
-    "headers": {
-      "Authorization": "Bearer token"
-    }
+    "url": "https://jsonplaceholder.typicode.com/users",
+    "method": "GET"
   },
   "options": {
     "saveToDb": true
   }
 }</code></pre>
-    </div>
+        </div>
 
-    <div class="endpoint">
-        <p><span class="method">POST</span> <span class="path">/transform</span></p>
-        <p>Transform and enrich data using Ollama with Mistral model.</p>
-        <pre><code>{
-  "data": [...] || "recordId": "record-id-from-extract",
+        <div class="endpoint">
+            <span class="method post">POST</span>
+            <strong>/transform</strong>
+            <p>Transforms and enriches data using AI with the Ollama Mistral model.</p>
+            <h3>Example Request:</h3>
+            <pre><code>{
+  "data": [
+    {"id": 1, "name": "Product A", "description": "A basic product"},
+    {"id": 2, "name": "Product B", "description": "Another basic product"}
+  ],
   "transformations": {
     "clean": {
       "removeEmpty": true,
       "textFields": ["name", "description"]
     },
     "enrich": {
-      "instruction": "Analyze the sentiment of each review and add a score.",
-      "fields": ["content"]
+      "instruction": "Generate a more detailed product description with at least 3 benefits",
+      "fields": ["description"]
     }
   }
 }</code></pre>
-    </div>
+        </div>
 
-    <div class="endpoint">
-        <p><span class="method">POST</span> <span class="path">/load</span></p>
-        <p>Load data to a destination.</p>
-        <pre><code>{
-  "data": [...] || "recordId": "record-id-from-transform",
+        <div class="endpoint">
+            <span class="method post">POST</span>
+            <strong>/load</strong>
+            <p>Loads data to a specified destination (MongoDB, Azure Blob Storage).</p>
+            <h3>Example Request:</h3>
+            <pre><code>{
+  "data": [
+    {"id": 1, "name": "Product A", "description": "A premium quality product..."},
+    {"id": 2, "name": "Product B", "description": "An innovative solution..."}
+  ],
   "destination": {
     "type": "mongodb",
-    "collection": "processed_data",
+    "collection": "enriched_products",
     "upsert": true,
     "upsertKey": "id"
   }
 }</code></pre>
-    </div>
+        </div>
 
-    <div class="endpoint">
-        <p><span class="method">POST</span> <span class="path">/orchestrate</span></p>
-        <p>Run the complete ETL pipeline.</p>
-        <pre><code>{
+        <div class="endpoint">
+            <span class="method post">POST</span>
+            <strong>/orchestrate</strong>
+            <p>Runs the complete ETL pipeline in a single request.</p>
+            <h3>Example Request:</h3>
+            <pre><code>{
   "source": {
     "type": "api",
-    "url": "https://api.example.com/data"
+    "url": "https://jsonplaceholder.typicode.com/posts"
   },
   "transformations": {
-    "clean": { "removeEmpty": true },
+    "clean": {
+      "removeEmpty": true
+    },
     "enrich": {
-      "instruction": "Generate a summary for each item.",
-      "fields": ["description"]
+      "instruction": "Generate a more engaging title for each post",
+      "fields": ["title"]
     }
   },
   "destination": {
     "type": "mongodb",
-    "collection": "processed_data"
+    "collection": "enriched_posts"
   }
 }</code></pre>
-    </div>
+        </div>
 
-    <a href="https://github.com/yourusername/serverless-etl-genai" class="button">View on GitHub</a>
+        <div class="endpoint">
+            <span class="method post">POST</span>
+            <strong>/admin/reset-metrics</strong>
+            <p>Resets all collected metrics (requires admin API key).</p>
+            <h3>Headers Required:</h3>
+            <pre><code>X-API-Key: your_api_key_here
+X-Admin-Key: your_admin_api_key_here</code></pre>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>File Processing Utilities</h2>
+        <p>The service includes utilities for processing various file formats, supporting both JSON and CSV files for ETL operations.</p>
+        
+        <h3>Example: Extracting from a CSV File</h3>
+        <pre><code>{
+  "source": {
+    "type": "file",
+    "format": "csv",
+    "path": "data/products.csv",
+    "options": {
+      "headers": true,
+      "skipEmptyLines": true
+    }
+  }
+}</code></pre>
+
+        <h3>Example: Loading to a JSON File</h3>
+        <pre><code>{
+  "data": [...],
+  "destination": {
+    "type": "file",
+    "format": "json",
+    "path": "data/enriched_products.json",
+    "options": {
+      "pretty": true
+    }
+  }
+}</code></pre>
+    </section>
+
+    <section class="section">
+        <h2>Authentication</h2>
+        <p>Most endpoints require authentication using an API key. You can provide the API key in one of two ways:</p>
+        <ul>
+            <li>Using the <code>X-API-Key</code> header: <code>X-API-Key: your_api_key_here</code></li>
+            <li>Using the Authorization header: <code>Authorization: Bearer your_api_key_here</code></li>
+        </ul>
+        <div class="note">
+            <p><strong>Note:</strong> In development mode, authentication can be disabled by setting <code>REQUIRE_AUTH=false</code> in your environment variables.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Monitoring and Performance</h2>
+        <p>The service includes built-in monitoring capabilities to track performance metrics and health information.</p>
+        
+        <h3>Key Metrics Available</h3>
+        <table>
+            <tr>
+                <th>Category</th>
+                <th>Metrics</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>Requests</td>
+                <td>Total, Successful, Failed, Success Rate</td>
+                <td>Request statistics by endpoint</td>
+            </tr>
+            <tr>
+                <td>Performance</td>
+                <td>Average, Min, Max Response Times</td>
+                <td>API performance metrics</td>
+            </tr>
+            <tr>
+                <td>Ollama</td>
+                <td>Calls, Success Rate, Average Time</td>
+                <td>AI model integration metrics</td>
+            </tr>
+            <tr>
+                <td>System</td>
+                <td>Memory Usage, CPU Load</td>
+                <td>Host system resource utilization</td>
+            </tr>
+        </table>
+        
+        <p>Access these metrics using the <code>/metrics</code> endpoint with API key authentication.</p>
+    </section>
+
+    <section class="section">
+        <h2>Error Handling</h2>
+        <p>All endpoints return a consistent error format:</p>
+        <pre><code>{
+  "success": false,
+  "error": {
+    "message": "Error message describing what went wrong",
+    "status": 400,
+    "timestamp": "2023-03-21T12:30:45.123Z"
+  }
+}</code></pre>
+        <p>Common HTTP status codes:</p>
+        <ul>
+            <li><strong>400</strong> - Bad Request (invalid input)</li>
+            <li><strong>401</strong> - Unauthorized (missing/invalid API key)</li>
+            <li><strong>404</strong> - Not Found (resource/endpoint not found)</li>
+            <li><strong>500</strong> - Internal Server Error</li>
+        </ul>
+    </section>
+
+    <section class="section">
+        <h2>Additional Resources</h2>
+        <p>For more information, check out the following resources:</p>
+        <a href="https://github.com/yourusername/serverless-etl-genai" class="btn">GitHub Repository</a>
+    </section>
 </body>
 </html> 
