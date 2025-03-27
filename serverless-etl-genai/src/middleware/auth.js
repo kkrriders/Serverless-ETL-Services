@@ -5,6 +5,20 @@
  */
 const logger = require('../utils/logger');
 const { config } = require('../config/config');
+const rateLimit = require('express-rate-limit');
+
+// Create rate limiter
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+  message: {
+    success: false,
+    error: 'Too many requests',
+    message: 'Please try again later'
+  },
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
 
 /**
  * Verify the API key in the request headers
@@ -48,27 +62,60 @@ function validateApiKey(req, res, next) {
         error: 'Authentication configuration error'
       });
     }
+
+    // Compare API keys using timing-safe comparison
+    const isValid = timingSafeEqual(apiKey, configuredApiKey);
     
-    if (apiKey !== configuredApiKey) {
-      logger.warn(`Invalid API key used - ${req.method} ${req.originalUrl}`);
-      return res.status(403).json({
+    if (!isValid) {
+      logger.warn(`Invalid API key attempt - ${req.method} ${req.originalUrl}`);
+      return res.status(401).json({
         success: false,
-        error: 'Invalid API key'
+        error: 'Invalid API key',
+        message: 'The provided API key is invalid'
       });
     }
 
-    // API key is valid, proceed to the next middleware
+    // Add API key info to request for logging
+    req.apiKeyInfo = {
+      key: apiKey.substring(0, 4) + '...', // Only log first 4 chars
+      timestamp: new Date().toISOString()
+    };
+
     next();
   } catch (error) {
     logger.error(`Authentication error: ${error.message}`);
     return res.status(500).json({
       success: false,
       error: 'Authentication error',
-      message: process.env.NODE_ENV === 'development' ? error.message : undefined
+      message: 'An error occurred during authentication'
     });
   }
 }
 
+/**
+ * Timing-safe string comparison
+ * @param {string} a - First string to compare
+ * @param {string} b - Second string to compare
+ * @returns {boolean} True if strings are equal
+ */
+function timingSafeEqual(a, b) {
+  if (typeof a !== 'string' || typeof b !== 'string') {
+    return false;
+  }
+  
+  if (a.length !== b.length) {
+    return false;
+  }
+  
+  let result = 0;
+  for (let i = 0; i < a.length; i++) {
+    result |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  }
+  
+  return result === 0;
+}
+
 module.exports = {
   validateApiKey,
+  limiter
 }; 

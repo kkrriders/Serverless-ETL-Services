@@ -7,8 +7,10 @@ const { extract } = require('../handlers/extractHandler');
 const { transform } = require('../handlers/transformHandler');
 const { load } = require('../handlers/loadHandler');
 const { orchestrate } = require('../handlers/orchestratorHandler');
-const { validateApiKey } = require('../middleware/auth');
+const { validateApiKey, limiter } = require('../middleware/auth');
 const { checkOllamaAvailability } = require('../utils/ollamaClient');
+const { catchAsync } = require('../utils/errorHandler');
+const logger = require('../utils/logger');
 
 const router = express.Router();
 
@@ -18,7 +20,7 @@ router.get('/', (req, res) => {
 });
 
 // Health check endpoint (public)
-router.get('/health', async (req, res) => {
+router.get('/health', catchAsync(async (req, res) => {
   // Check Ollama availability
   const ollamaAvailable = await checkOllamaAvailability();
   
@@ -26,58 +28,46 @@ router.get('/health', async (req, res) => {
     status: 'OK', 
     message: 'Service is running',
     ollama: ollamaAvailable ? 'available' : 'unavailable',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    version: process.env.npm_package_version || '1.0.0'
   });
-});
+}));
 
-// Protected routes - require API key authentication
-router.use('/extract', validateApiKey);
-router.use('/transform', validateApiKey);
-router.use('/load', validateApiKey);
-router.use('/orchestrate', validateApiKey);
+// Protected routes with rate limiting and authentication
+router.use(limiter);
+router.use(validateApiKey);
 
 // Extract endpoint
-router.post('/extract', async (req, res, next) => {
-  try {
-    const response = await extract({}, req);
-    res.status(response.status).json(response.body);
-  } catch (error) {
-    next(error);
-  }
-});
+router.post('/extract', catchAsync(async (req, res) => {
+  logger.info('Processing extract request');
+  const result = await extract({}, req);
+  res.status(result.status).json(result.body);
+}));
 
 // Transform endpoint
-router.post('/transform', async (req, res, next) => {
-  try {
-    const response = await transform({}, req);
-    res.status(response.status).json(response.body);
-  } catch (error) {
-    next(error);
-  }
-});
+router.post('/transform', catchAsync(async (req, res) => {
+  logger.info('Processing transform request');
+  const result = await transform({}, req);
+  res.status(result.status).json(result.body);
+}));
 
 // Load endpoint
-router.post('/load', async (req, res, next) => {
-  try {
-    const response = await load({}, req);
-    res.status(response.status).json(response.body);
-  } catch (error) {
-    next(error);
-  }
-});
+router.post('/load', catchAsync(async (req, res) => {
+  logger.info('Processing load request');
+  const result = await load({}, req);
+  res.status(result.status).json(result.body);
+}));
 
-// Orchestrator endpoint
-router.post('/orchestrate', async (req, res, next) => {
-  try {
-    const response = await orchestrate({}, req);
-    res.status(response.status).json(response.body);
-  } catch (error) {
-    next(error);
-  }
-});
+// Orchestrate endpoint
+router.post('/orchestrate', catchAsync(async (req, res) => {
+  logger.info('Processing orchestrate request');
+  const result = await orchestrate({}, req);
+  res.status(result.status).json(result.body);
+}));
 
 // 404 handler - must be last
 router.use('*', (req, res) => {
+  logger.warn(`404 Not Found: ${req.originalUrl}`);
   res.status(404).json({
     success: false,
     error: `Resource not found: ${req.originalUrl}`,

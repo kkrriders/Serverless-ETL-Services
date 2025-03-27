@@ -8,6 +8,7 @@ const logger = require('./utils/logger');
 const routes = require('./routes');
 const { validateConfig } = require('./config/config');
 const { connectToDatabase } = require('./utils/db');
+const { formatErrorResponse } = require('./utils/errorHandler');
 
 // Load environment variables
 require('dotenv').config();
@@ -25,51 +26,30 @@ try {
 
 // Middleware
 app.use(cors());
-
-// JSON parsing with error handling
-app.use(express.json({
-  limit: '10mb',
-  verify: (req, res, buf) => {
-    try {
-      JSON.parse(buf);
-    } catch (e) {
-      res.status(400).json({ 
-        success: false, 
-        error: 'Invalid JSON payload',
-        message: e.message 
-      });
-      throw new Error('Invalid JSON');
-    }
-  }
-}));
-
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Request logging middleware
+app.use((req, res, next) => {
+  const start = Date.now();
+  res.on('finish', () => {
+    const duration = Date.now() - start;
+    logger.http(`${req.method} ${req.originalUrl} - ${res.statusCode} - ${duration}ms`);
+  });
+  next();
+});
 
 // Static files (if needed for documentation)
 app.use('/docs', express.static(path.join(__dirname, '../docs')));
 
-// Request logging middleware
-app.use((req, res, next) => {
-  logger.info(`${req.method} ${req.url}`);
-  next();
-});
-
 // Add routes
 app.use('/', routes);
 
-// Error handling middleware
+// Global error handler
 app.use((err, req, res, next) => {
-  logger.error(`Error: ${err.message}`);
-  
-  // Don't send error details in production
-  const errorDetails = process.env.NODE_ENV === 'production' 
-    ? 'An error occurred processing your request' 
-    : err.message;
-  
-  res.status(err.status || 500).json({
-    success: false,
-    error: errorDetails
-  });
+  logger.error(`Unhandled error: ${err.message}`);
+  const errorResponse = formatErrorResponse(err);
+  res.status(errorResponse.status).json(errorResponse.body);
 });
 
 // Start the server
