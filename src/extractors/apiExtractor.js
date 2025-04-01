@@ -1,55 +1,75 @@
+/**
+ * API Extractor
+ * Module to extract data from APIs
+ */
 const axios = require('axios');
 const logger = require('../utils/logger');
+const { AppError } = require('../utils/errorHandler');
+const monitor = require('../utils/monitor');
 
 /**
- * Extract data from an API
- * @param {Object} options - API extraction options
- * @param {string} options.url - API URL
- * @param {string} options.method - HTTP method (GET, POST, etc.)
- * @param {Object} options.headers - Request headers
- * @param {Object} options.params - Query parameters
- * @param {Object} options.data - Request body data (for POST, PUT, etc.)
- * @param {number} options.timeout - Request timeout in milliseconds
- * @returns {Promise<Object>} The extracted data
+ * Extract data from an API endpoint
+ * @param {Object} source - Source configuration
+ * @returns {Promise<any>} - Extracted data
  */
-async function extractFromApi(options) {
+async function extractFromApi(source) {
+  const startTime = Date.now();
+  
   try {
-    const { url, method = 'GET', headers = {}, params = {}, data = {}, timeout = 10000 } = options;
-
-    if (!url) {
-      throw new Error('API URL is required');
+    if (!source.url) {
+      throw new AppError('API source must include a URL', 400);
     }
 
-    logger.info(`Extracting data from API: ${url}`);
+    const method = source.method || 'GET';
+    const headers = source.headers || {};
+    const data = source.data || null;
+    const params = source.params || null;
+    const timeout = source.timeout || 30000;
 
-    // Make the API request
+    logger.info(`Extracting data from API: ${method} ${source.url}`);
+
     const response = await axios({
-      url,
       method,
+      url: source.url,
       headers,
-      params,
       data,
+      params,
       timeout,
+      validateStatus: status => status >= 200 && status < 300,
     });
 
-    logger.info(`Successfully extracted data from API: ${url}`);
+    const duration = Date.now() - startTime;
+    logger.info(`API extraction completed in ${duration}ms`);
 
-    return {
-      data: response.data,
-      status: response.status,
-      headers: response.headers,
-    };
+    return response.data;
   } catch (error) {
-    logger.error(`Error extracting data from API: ${error.message}`);
+    const duration = Date.now() - startTime;
+    logger.error(`API extraction failed in ${duration}ms: ${error.message}`);
     
-    // Return error details
-    return {
-      error: {
-        message: error.message,
-        status: error.response?.status,
-        data: error.response?.data,
-      },
-    };
+    // Track error
+    monitor.trackError(error, 'apiExtractor');
+    
+    if (error.response) {
+      throw new AppError(
+        `API request failed with status ${error.response.status}: ${error.response.statusText}`,
+        400,
+        {
+          url: source.url,
+          statusCode: error.response.status,
+          data: error.response.data
+        }
+      );
+    } else if (error.request) {
+      throw new AppError(
+        `API request failed to receive a response: ${error.message}`,
+        500,
+        { url: source.url }
+      );
+    } else if (error instanceof AppError) {
+      throw error;
+    } else {
+      throw new AppError(`API request failed: ${error.message}`, 500);
+    }
   }
 }
 

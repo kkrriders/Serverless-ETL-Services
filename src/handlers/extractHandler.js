@@ -1,10 +1,17 @@
 const { extractFromApi } = require('../extractors/apiExtractor');
 const { extractFromMongo } = require('../extractors/mongoExtractor');
 const { extractFromBlob } = require('../extractors/blobExtractor');
+const { extractFromFile } = require('../extractors/fileExtractor');
 const { formatErrorResponse } = require('../utils/errorHandler');
 const { validateConfig } = require('../config/config');
 const logger = require('../utils/logger');
 const DataModel = require('../models/dataModel');
+const axios = require('axios');
+const { AppError } = require('../utils/errorHandler');
+const { connectToDatabase } = require('../utils/db');
+const { readJsonFile, readCsvFile } = require('../utils/fileUtils');
+const { getBlobClient } = require('../utils/blobUtils');
+const monitor = require('../utils/monitor');
 
 /**
  * Extract data from various sources
@@ -13,6 +20,7 @@ const DataModel = require('../models/dataModel');
  * @returns {Object} HTTP response
  */
 async function extract(context, req) {
+  const startTime = Date.now();
   try {
     logger.info('Extracting data...');
     validateConfig();
@@ -60,14 +68,7 @@ async function extract(context, req) {
           method: source.method || 'GET',
         };
         
-        extractedData = await extractFromApi({
-          url: source.url,
-          method: source.method || 'GET',
-          headers: source.headers || {},
-          params: source.params || {},
-          data: source.data || {},
-          timeout: source.timeout || 10000,
-        });
+        extractedData = await extractFromApi(source);
         break;
         
       case 'mongodb':
@@ -86,14 +87,7 @@ async function extract(context, req) {
           query: source.query || {},
         };
         
-        extractedData = await extractFromMongo({
-          collection: source.collection,
-          query: source.query || {},
-          projection: source.projection || {},
-          sort: source.sort || {},
-          limit: source.limit || 0,
-          skip: source.skip || 0,
-        });
+        extractedData = await extractFromMongo(source);
         break;
         
       case 'blob':
@@ -112,10 +106,11 @@ async function extract(context, req) {
           blobName: source.blobName,
         };
         
-        extractedData = await extractFromBlob({
-          containerName: source.containerName,
-          blobName: source.blobName,
-        });
+        extractedData = await extractFromBlob(source);
+        break;
+        
+      case 'file':
+        extractedData = await extractFromFile(source);
         break;
         
       default:
@@ -170,21 +165,70 @@ async function extract(context, req) {
     
     logger.info('Successfully extracted data');
     
+    const duration = Date.now() - startTime;
+    logger.info(`Data extraction completed in ${duration}ms`);
+    
     return {
       status: 200,
       body: {
         success: true,
         data: extractedData,
+        source: source.type,
+        timestamp: new Date().toISOString()
       },
     };
   } catch (error) {
+    const duration = Date.now() - startTime;
     logger.error(`Error extracting data: ${error.message}`);
+    monitor.trackError(error, 'extract');
     
+    const statusCode = error instanceof AppError ? error.statusCode : 500;
     return {
-      status: error.statusCode || 500,
-      body: formatErrorResponse(error),
+      status: statusCode,
+      body: {
+        success: false,
+        error: error.message,
+        timestamp: new Date().toISOString()
+      },
     };
   }
 }
 
-module.exports = { extract }; 
+/**
+ * Detect format from file path
+ * @param {string} filePath - File path
+ * @returns {string} Format (json, csv, etc.)
+ */
+function detectFormatFromPath(filePath) {
+  if (filePath.endsWith('.json')) {
+    return 'json';
+  } else if (filePath.endsWith('.csv')) {
+    return 'csv';
+  } else {
+    throw new AppError(`Unable to detect format from file path: ${filePath}`, 400);
+  }
+}
+
+/**
+ * Convert stream to buffer
+ * @param {ReadableStream} readableStream - Readable stream
+ * @returns {Promise<Buffer>} Buffer
+ */
+async function streamToBuffer(readableStream) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    readableStream.on('data', (data) => {
+      chunks.push(data instanceof Buffer ? data : Buffer.from(data));
+    });
+    readableStream.on('end', () => {
+      resolve(Buffer.concat(chunks));
+    });
+    readableStream.on('error', reject);
+  });
+}
+
+module.exports = {
+  extract,
+  detectFormatFromPath,
+  streamToBuffer
+}; 

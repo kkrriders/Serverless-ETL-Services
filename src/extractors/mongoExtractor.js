@@ -1,50 +1,72 @@
+/**
+ * MongoDB Extractor
+ * Module to extract data from MongoDB collections
+ */
 const logger = require('../utils/logger');
+const { AppError } = require('../utils/errorHandler');
 const { connectToDatabase } = require('../utils/db');
+const monitor = require('../utils/monitor');
 
 /**
- * Extract data from MongoDB
- * @param {Object} options - MongoDB extraction options
- * @param {string} options.collection - MongoDB collection name
- * @param {Object} options.query - MongoDB query
- * @param {Object} options.projection - MongoDB projection
- * @param {Object} options.sort - MongoDB sort
- * @param {number} options.limit - MongoDB limit
- * @param {number} options.skip - MongoDB skip
- * @returns {Promise<Array<Object>>} The extracted data
+ * Extract data from MongoDB collection
+ * @param {Object} source - Source configuration
+ * @returns {Promise<Array>} Extracted data
  */
-async function extractFromMongo(options) {
+async function extractFromMongo(source) {
+  const startTime = Date.now();
+  
   try {
-    const { collection, query = {}, projection = {}, sort = {}, limit = 0, skip = 0 } = options;
-
-    if (!collection) {
-      throw new Error('MongoDB collection name is required');
+    if (!source.collection) {
+      throw new AppError('MongoDB source must include a collection name', 400);
     }
 
-    logger.info(`Extracting data from MongoDB collection: ${collection}`);
+    if (!process.env.MONGODB_URI) {
+      throw new AppError('MongoDB URI is not configured', 500);
+    }
 
-    // Connect to the database
+    logger.info(`Extracting data from MongoDB collection: ${source.collection}`);
+
     const db = await connectToDatabase();
+    const collection = db.collection(source.collection);
+
+    const query = source.query || {};
+    const projection = source.projection || {};
+    const sort = source.sort || {};
+    const limit = source.limit || 0;
+    const skip = source.skip || 0;
+
+    let cursor = collection.find(query, { projection });
     
-    // Get the MongoDB connection
-    const mongoose = db.connection.getClient();
+    if (Object.keys(sort).length > 0) {
+      cursor = cursor.sort(sort);
+    }
     
-    // Get the collection
-    const coll = mongoose.db().collection(collection);
-
-    // Execute the query
-    const result = await coll
-      .find(query, { projection })
-      .sort(sort)
-      .skip(skip)
-      .limit(limit)
-      .toArray();
-
-    logger.info(`Successfully extracted ${result.length} documents from MongoDB collection: ${collection}`);
-
-    return result;
+    if (skip > 0) {
+      cursor = cursor.skip(skip);
+    }
+    
+    if (limit > 0) {
+      cursor = cursor.limit(limit);
+    }
+    
+    const data = await cursor.toArray();
+    
+    const duration = Date.now() - startTime;
+    logger.info(`MongoDB extraction completed in ${duration}ms: ${data.length} records`);
+    
+    return data;
   } catch (error) {
-    logger.error(`Error extracting data from MongoDB: ${error.message}`);
-    throw error;
+    const duration = Date.now() - startTime;
+    logger.error(`MongoDB extraction failed in ${duration}ms: ${error.message}`);
+    
+    // Track error
+    monitor.trackError(error, 'mongoExtractor');
+    
+    if (error instanceof AppError) {
+      throw error;
+    } else {
+      throw new AppError(`MongoDB extraction failed: ${error.message}`, 500);
+    }
   }
 }
 

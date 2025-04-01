@@ -4,11 +4,11 @@ const mongoose = require('mongoose');
  * Schema for ETL source data
  */
 const sourceSchema = new mongoose.Schema({
-  // Source type (e.g., 'api', 'database', 'file')
+  // Source type (e.g., 'api', 'mongodb', 'file')
   type: {
     type: String,
     required: true,
-    enum: ['api', 'database', 'file', 'blob'],
+    enum: ['api', 'mongodb', 'file', 'blob'],
   },
   // Source information
   name: {
@@ -61,7 +61,7 @@ const dataSchema = new mongoose.Schema(
     destination: {
       type: String,
       required: true,
-      enum: ['mongodb', 'blob', 'api'],
+      enum: ['mongodb', 'blob', 'file', 'api'],
     },
     // Processing metadata
     metadata: {
@@ -77,6 +77,10 @@ const dataSchema = new mongoose.Schema(
       processingDuration: {
         type: Number,
       },
+      // Load operation result
+      loadResult: {
+        type: mongoose.Schema.Types.Mixed
+      }
     },
   },
   {

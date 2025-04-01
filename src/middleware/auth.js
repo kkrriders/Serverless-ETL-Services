@@ -4,7 +4,6 @@
  * In a production environment, you would use a more secure authentication method
  */
 const logger = require('../utils/logger');
-const { config } = require('../config/config');
 const rateLimit = require('express-rate-limit');
 
 // Create rate limiter
@@ -28,9 +27,9 @@ const limiter = rateLimit({
  */
 function validateApiKey(req, res, next) {
   try {
-    // Skip authentication in development mode if specified
-    if (process.env.NODE_ENV === 'development' && process.env.REQUIRE_AUTH !== 'true') {
-      logger.debug('Authentication skipped in development mode');
+    // Skip authentication in development mode or if not required
+    if (process.env.REQUIRE_AUTH === 'false') {
+      logger.debug('Authentication skipped - not required');
       return next();
     }
 
@@ -93,6 +92,22 @@ function validateApiKey(req, res, next) {
 }
 
 /**
+ * Simple authentication middleware for routes
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next function
+ */
+function auth(req, res, next) {
+  // Skip authentication for health check and documentation
+  if (req.path === '/health' || req.path === '/docs' || req.path.startsWith('/docs/')) {
+    return next();
+  }
+  
+  // Apply API key validation for all other routes
+  validateApiKey(req, res, next);
+}
+
+/**
  * Timing-safe string comparison
  * @param {string} a - First string to compare
  * @param {string} b - Second string to compare
@@ -117,5 +132,6 @@ function timingSafeEqual(a, b) {
 
 module.exports = {
   validateApiKey,
-  limiter
+  limiter,
+  auth
 }; 

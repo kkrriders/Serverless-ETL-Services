@@ -1,9 +1,15 @@
 const { loadToMongo } = require('../loaders/mongoLoader');
 const { loadToBlob } = require('../loaders/blobLoader');
+const { loadToFile } = require('../loaders/fileLoader');
 const { formatErrorResponse } = require('../utils/errorHandler');
 const { validateConfig } = require('../config/config');
 const logger = require('../utils/logger');
 const DataModel = require('../models/dataModel');
+const { AppError } = require('../utils/errorHandler');
+const { connectToDatabase } = require('../utils/db');
+const { writeJsonFile, writeCsvFile } = require('../utils/fileUtils');
+const { getBlobClient } = require('../utils/blobUtils');
+const monitor = require('../utils/monitor');
 
 /**
  * Load data to various destinations
@@ -12,6 +18,7 @@ const DataModel = require('../models/dataModel');
  * @returns {Object} HTTP response
  */
 async function load(context, req) {
+  const startTime = Date.now();
   try {
     logger.info('Loading data...');
     validateConfig();
@@ -19,33 +26,15 @@ async function load(context, req) {
     const { data, recordId, destination, options } = req.body || {};
     
     if (!data && !recordId) {
-      return {
-        status: 400,
-        body: {
-          success: false,
-          error: 'Data or recordId is required',
-        },
-      };
+      throw new AppError('Data or recordId is required', 400);
     }
     
     if (!destination) {
-      return {
-        status: 400,
-        body: {
-          success: false,
-          error: 'Destination configuration is required',
-        },
-      };
+      throw new AppError('Destination configuration is required', 400);
     }
     
     if (!destination.type) {
-      return {
-        status: 400,
-        body: {
-          success: false,
-          error: 'Destination type is required',
-        },
-      };
+      throw new AppError('Destination type is required', 400);
     }
     
     let sourceData;
@@ -57,13 +46,7 @@ async function load(context, req) {
         dataRecord = await DataModel.findById(recordId);
         
         if (!dataRecord) {
-          return {
-            status: 404,
-            body: {
-              success: false,
-              error: `Record not found with ID: ${recordId}`,
-            },
-          };
+          throw new AppError(`Record not found with ID: ${recordId}`, 404);
         }
         
         // Use transformed data if available, otherwise use raw data
@@ -71,26 +54,14 @@ async function load(context, req) {
       } catch (dbError) {
         logger.error(`Error retrieving data from database: ${dbError.message}`);
         
-        return {
-          status: 500,
-          body: {
-            success: false,
-            error: `Error retrieving data from database: ${dbError.message}`,
-          },
-        };
+        throw new AppError(`Error retrieving data from database: ${dbError.message}`, 500);
       }
     } else {
       sourceData = data;
     }
     
     if (!sourceData) {
-      return {
-        status: 400,
-        body: {
-          success: false,
-          error: 'No data to load',
-        },
-      };
+      throw new AppError('No data to load', 400);
     }
     
     let loadResult;
@@ -98,42 +69,16 @@ async function load(context, req) {
     // Load data based on destination type
     switch (destination.type) {
       case 'mongodb':
-        loadResult = await loadToMongo(sourceData, {
-          collection: destination.collection,
-          batchSize: destination.batchSize || 100,
-          upsert: destination.upsert || false,
-          upsertKey: destination.upsertKey || '_id',
-        });
+        loadResult = await loadToMongo(sourceData, destination);
         break;
-        
       case 'blob':
-        if (!destination.blobName) {
-          return {
-            status: 400,
-            body: {
-              success: false,
-              error: 'Blob name is required',
-            },
-          };
-        }
-        
-        loadResult = await loadToBlob(sourceData, {
-          containerName: destination.containerName,
-          blobName: destination.blobName,
-          format: destination.format || 'json',
-          contentType: destination.contentType,
-          overwrite: destination.overwrite !== false,
-        });
+        loadResult = await loadToBlob(sourceData, destination);
         break;
-        
+      case 'file':
+        loadResult = await loadToFile(sourceData, destination);
+        break;
       default:
-        return {
-          status: 400,
-          body: {
-            success: false,
-            error: `Unsupported destination type: ${destination.type}`,
-          },
-        };
+        throw new AppError(`Unsupported destination type: ${destination.type}`, 400);
     }
     
     // Update the record in the database if recordId is provided
@@ -152,18 +97,13 @@ async function load(context, req) {
       } catch (dbError) {
         logger.error(`Error updating loaded data in database: ${dbError.message}`);
         
-        return {
-          status: 200,
-          body: {
-            success: true,
-            result: loadResult,
-            warning: 'Failed to update data in database',
-          },
-        };
+        throw new AppError('Failed to update data in database', 200);
       }
     }
     
-    logger.info('Successfully loaded data');
+    // Log success
+    const duration = Date.now() - startTime;
+    logger.info(`Data loading completed in ${duration}ms`);
     
     return {
       status: 200,
@@ -171,16 +111,48 @@ async function load(context, req) {
         success: true,
         result: loadResult,
         recordId: dataRecord?._id,
+        destination: destination.type,
+        timestamp: new Date().toISOString()
       },
     };
   } catch (error) {
+    const duration = Date.now() - startTime;
     logger.error(`Error loading data: ${error.message}`);
-    
+    monitor.trackError(error, 'load');
+
+    const statusCode = error instanceof AppError ? error.statusCode : 500;
     return {
-      status: error.statusCode || 500,
-      body: formatErrorResponse(error),
+      status: statusCode,
+      body: {
+        success: false,
+        error: error.message,
+        timestamp: new Date().toISOString()
+      }
     };
   }
 }
 
-module.exports = { load }; 
+/**
+ * Detect format from file path
+ * @param {string} filePath - File path to detect format from
+ * @returns {string} Format (json, csv, etc.)
+ */
+function detectFormatFromPath(filePath) {
+  const extension = filePath.split('.').pop().toLowerCase();
+  
+  switch (extension) {
+    case 'json':
+      return 'json';
+    case 'csv':
+      return 'csv';
+    case 'txt':
+      return 'txt';
+    default:
+      return 'json'; // Default to JSON
+  }
+}
+
+module.exports = {
+  load,
+  detectFormatFromPath
+}; 

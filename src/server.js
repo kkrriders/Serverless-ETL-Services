@@ -9,6 +9,7 @@ const routes = require('./routes');
 const { validateConfig } = require('./config/config');
 const { connectToDatabase } = require('./utils/db');
 const { formatErrorResponse } = require('./utils/errorHandler');
+const { checkOllamaAvailability } = require('./utils/ollamaClient');
 
 // Load environment variables
 require('dotenv').config();
@@ -69,6 +70,18 @@ async function startServer() {
       }
     } else {
       logger.warn('MONGODB_URI not provided. Running without database connection');
+    }
+
+    // Check Ollama availability
+    try {
+      const available = await checkOllamaAvailability();
+      if (available) {
+        logger.info('Ollama service is available');
+      } else {
+        logger.warn('Ollama service is not available. Some functionality may be limited.');
+      }
+    } catch (error) {
+      logger.warn(`Failed to check Ollama availability: ${error.message}`);
     }
 
     // Start the Express server

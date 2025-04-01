@@ -24,7 +24,7 @@ class AppError extends Error {
 /**
  * Format an error response
  * @param {Error} error - The error to format
- * @returns {Object} Formatted error response
+ * @returns {Object} Formatted error response with status and body
  */
 function formatErrorResponse(error) {
   // Determine if this is an operational error
@@ -37,24 +37,29 @@ function formatErrorResponse(error) {
     logger.error(`Unhandled error: ${error.message}`, { stack: error.stack });
   }
   
+  const statusCode = error.statusCode || 500;
+  
   // Create the base error response
   const errorResponse = {
-    success: false,
-    error: {
-      message: error.message || 'An unexpected error occurred',
-      status: error.statusCode || 500,
-      timestamp: error.timestamp || new Date().toISOString(),
-    },
+    status: statusCode,
+    body: {
+      success: false,
+      error: {
+        message: error.message || 'An unexpected error occurred',
+        status: statusCode,
+        timestamp: error.timestamp || new Date().toISOString(),
+      }
+    }
   };
   
   // Add stack trace in development mode
   if (process.env.NODE_ENV === 'development' && error.stack) {
-    errorResponse.error.stack = error.stack;
+    errorResponse.body.error.stack = error.stack;
   }
   
   // Add details if available
   if (error.details) {
-    errorResponse.error.details = error.details;
+    errorResponse.body.error.details = error.details;
   }
   
   return errorResponse;
@@ -130,10 +135,30 @@ async function retry(fn, options = {}) {
   }
 }
 
+/**
+ * Global error handler middleware for Express
+ * @param {Error} err - The error that occurred
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {Function} next - Express next function
+ */
+function errorHandler(err, req, res, next) {
+  // Format the error response
+  const errorResponse = formatErrorResponse(err);
+  
+  // Log the error
+  const logLevel = err instanceof AppError && err.statusCode < 500 ? 'warn' : 'error';
+  logger[logLevel](`Error in route ${req.method} ${req.originalUrl}: ${err.message}`);
+  
+  // Send the error response
+  res.status(errorResponse.status).json(errorResponse.body);
+}
+
 module.exports = {
   AppError,
   formatErrorResponse,
   catchAsync,
   handlePromise,
   retry,
+  errorHandler
 }; 
