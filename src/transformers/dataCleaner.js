@@ -45,7 +45,7 @@ function standardizeDates(data, dateFields, dateFormat = 'ISO') {
     return data;
   }
 
-  const processValue = (item) => {
+  const processValue = item => {
     if (typeof item !== 'object' || item === null) {
       return item;
     }
@@ -103,7 +103,7 @@ function cleanTextFields(data, textFields, options = {}) {
     return data;
   }
 
-  const processValue = (item) => {
+  const processValue = item => {
     if (typeof item !== 'object' || item === null) {
       return item;
     }

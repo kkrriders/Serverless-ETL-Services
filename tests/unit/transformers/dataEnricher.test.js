@@ -33,7 +33,7 @@ describe('dataEnricher', () => {
 
       expect(enrichWithOpenAI).toHaveBeenCalledWith(
         { name: 'John' },
-        instruction
+        instruction,
       );
 
       expect(result).toEqual({

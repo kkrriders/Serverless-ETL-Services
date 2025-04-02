@@ -35,7 +35,7 @@ const format = winston.format.combine(
   winston.format.errors({ stack: true }), // Include stack traces for errors
   winston.format.colorize({ all: true }),
   winston.format.printf(
-    (info) => {
+    info => {
       const { timestamp, level, message, stack, ...meta } = info;
       let logMessage = `${timestamp} ${level}: ${message}`;
       
@@ -50,8 +50,8 @@ const format = winston.format.combine(
       }
       
       return logMessage;
-    }
-  )
+    },
+  ),
 );
 
 // Define which transports the logger should use
@@ -60,8 +60,8 @@ const transports = [
   new winston.transports.Console({
     format: winston.format.combine(
       winston.format.colorize(),
-      winston.format.simple()
-    )
+      winston.format.simple(),
+    ),
   }),
   
   // File transport for error logs with rotation
@@ -70,7 +70,7 @@ const transports = [
     level: 'error',
     maxsize: 5242880, // 5MB
     maxFiles: 5,
-    tailable: true
+    tailable: true,
   }),
   
   // File transport for all logs with rotation
@@ -78,8 +78,8 @@ const transports = [
     filename: path.join(logsDir, 'all.log'),
     maxsize: 5242880, // 5MB
     maxFiles: 5,
-    tailable: true
-  })
+    tailable: true,
+  }),
 ];
 
 // Create the logger
@@ -89,7 +89,7 @@ const logger = winston.createLogger({
   format,
   transports,
   // Don't exit on error
-  exitOnError: false
+  exitOnError: false,
 });
 
 // Add request logging helper
@@ -100,7 +100,7 @@ logger.logRequest = (req, res, duration) => {
     status: res.statusCode,
     duration: `${duration}ms`,
     ip: req.ip,
-    userAgent: req.get('user-agent')
+    userAgent: req.get('user-agent'),
   };
   
   if (res.statusCode >= 400) {
@@ -115,7 +115,7 @@ logger.logError = (error, context = {}) => {
   const errorData = {
     message: error.message,
     stack: error.stack,
-    ...context
+    ...context,
   };
   
   logger.error('Error occurred', errorData);

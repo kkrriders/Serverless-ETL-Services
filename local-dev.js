@@ -92,7 +92,7 @@ server.listen(PORT, () => {
 });
 
 // Handle server errors
-server.on('error', (error) => {
+server.on('error', error => {
   logger.error(`Server error: ${error.message}`);
 });
 

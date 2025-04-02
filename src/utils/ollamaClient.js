@@ -24,17 +24,17 @@ async function checkOllamaAvailability() {
     
     // Use a shorter timeout for health check
     const response = await axios.get(`${baseUrl}/tags`, {
-      timeout: 5000 // 5 second timeout
+      timeout: 5000, // 5 second timeout
     });
     
-    const duration = Date.now() - startTime;
-    logger.debug(`Ollama availability check completed in ${duration}ms`);
+    const _duration = Date.now() - startTime;
+    logger.debug(`Ollama availability check completed in ${_duration}ms`);
     
     // If we get a successful response, Ollama is available
     return response.status === 200;
   } catch (error) {
-    const duration = Date.now() - startTime;
-    logger.warn(`Ollama availability check failed in ${duration}ms: ${error.message}`);
+    const _duration = Date.now() - startTime;
+    logger.warn(`Ollama availability check failed in ${_duration}ms: ${error.message}`);
     return false;
   }
 }
@@ -63,7 +63,7 @@ async function generateText(prompt, options = {}) {
     const isAvailable = await checkOllamaAvailability();
     if (!isAvailable) {
       throw new AppError('Ollama service is not available', 503, {
-        suggestedAction: 'Please ensure Ollama is running and accessible'
+        suggestedAction: 'Please ensure Ollama is running and accessible',
       });
     }
     
@@ -74,9 +74,9 @@ async function generateText(prompt, options = {}) {
         temperature: options.temperature || config.ollama.temperature,
         num_predict: options.maxTokens || config.ollama.maxTokens,
       },
-      stream: false
+      stream: false,
     }, {
-      timeout: options.timeout || 60000 // 60 second timeout for LLM responses
+      timeout: options.timeout || 60000, // 60 second timeout for LLM responses
     });
 
     if (!response.data || !response.data.response) {
@@ -85,20 +85,20 @@ async function generateText(prompt, options = {}) {
 
     // Track successful call
     success = true;
-    const duration = Date.now() - startTime;
-    logger.info(`Generated text with Ollama in ${duration}ms`);
+    const _duration = Date.now() - startTime;
+    logger.info(`Generated text with Ollama in ${_duration}ms`);
     
     // Return the generated text
     return response.data.response;
   } catch (error) {
-    const duration = Date.now() - startTime;
+    const _duration = Date.now() - startTime;
     
     if (error.code === 'ECONNREFUSED') {
       logger.error('Failed to connect to Ollama. Is the Ollama server running?');
       throw new AppError(
         'Ollama server is not running', 
         503, 
-        { suggestedAction: 'Please start the Ollama server and try again' }
+        { suggestedAction: 'Please start the Ollama server and try again' },
       );
     }
     
@@ -106,7 +106,7 @@ async function generateText(prompt, options = {}) {
       logger.error(`Ollama API error (${error.response.status}): ${error.response.data?.error || error.message}`);
       throw new AppError(
         `Ollama API error: ${error.response.data?.error || error.message}`, 
-        error.response.status >= 400 && error.response.status < 500 ? error.response.status : 500
+        error.response.status >= 400 && error.response.status < 500 ? error.response.status : 500,
       );
     }
     
@@ -118,8 +118,8 @@ async function generateText(prompt, options = {}) {
     throw new AppError(`Error generating text with Ollama: ${error.message}`, 500);
   } finally {
     // Track Ollama call metrics
-    const duration = Date.now() - startTime;
-    monitor.trackOllamaCall(success, duration);
+    const _duration = Date.now() - startTime;
+    monitor.trackOllamaCall(success, _duration);
   }
 }
 
@@ -159,7 +159,7 @@ async function enrichData(data, instruction, options = {}) {
       temperature: options.temperature || 0.2,
       maxTokens: options.maxTokens || config.ollama.maxTokens,
       model: options.model || config.ollama.model,
-      timeout: options.timeout || 60000
+      timeout: options.timeout || 60000,
     };
 
     const response = await generateText(prompt, generationOptions);
@@ -180,8 +180,8 @@ async function enrichData(data, instruction, options = {}) {
       
       const enrichedData = JSON.parse(cleanedJsonStr);
       
-      const duration = Date.now() - startTime;
-      logger.info(`Data enrichment completed in ${duration}ms`);
+      const _duration = Date.now() - startTime;
+      logger.info(`Data enrichment completed in ${_duration}ms`);
       
       return enrichedData;
     } catch (parseError) {
@@ -192,18 +192,18 @@ async function enrichData(data, instruction, options = {}) {
       return {
         ...data,
         enriched_text: response,
-        _parse_error: parseError.message
+        _parse_error: parseError.message,
       };
     }
   } catch (error) {
-    const duration = Date.now() - startTime;
+    const _duration = Date.now() - startTime;
     logger.error(`Error enriching data: ${error.message}`);
     monitor.trackError(error, 'enrichData');
     
     // In case of API error, return the original data
     return {
       ...data,
-      _error: error.message
+      _error: error.message,
     };
   }
 }
@@ -211,5 +211,5 @@ async function enrichData(data, instruction, options = {}) {
 module.exports = {
   generateText,
   enrichData,
-  checkOllamaAvailability
+  checkOllamaAvailability,
 }; 

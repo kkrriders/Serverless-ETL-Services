@@ -13,7 +13,7 @@ const limiter = rateLimit({
   message: {
     success: false,
     error: 'Too many requests',
-    message: 'Please try again later'
+    message: 'Please try again later',
   },
   standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
@@ -46,7 +46,7 @@ function validateApiKey(req, res, next) {
       return res.status(401).json({
         success: false,
         error: 'Authentication required',
-        message: 'Please provide an API key using the X-API-Key header'
+        message: 'Please provide an API key using the X-API-Key header',
       });
     }
 
@@ -58,7 +58,7 @@ function validateApiKey(req, res, next) {
       logger.error('API_KEY environment variable is not set');
       return res.status(500).json({
         success: false,
-        error: 'Authentication configuration error'
+        error: 'Authentication configuration error',
       });
     }
 
@@ -70,14 +70,14 @@ function validateApiKey(req, res, next) {
       return res.status(401).json({
         success: false,
         error: 'Invalid API key',
-        message: 'The provided API key is invalid'
+        message: 'The provided API key is invalid',
       });
     }
 
     // Add API key info to request for logging
     req.apiKeyInfo = {
       key: apiKey.substring(0, 4) + '...', // Only log first 4 chars
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
 
     next();
@@ -86,7 +86,7 @@ function validateApiKey(req, res, next) {
     return res.status(500).json({
       success: false,
       error: 'Authentication error',
-      message: 'An error occurred during authentication'
+      message: 'An error occurred during authentication',
     });
   }
 }
@@ -133,5 +133,5 @@ function timingSafeEqual(a, b) {
 module.exports = {
   validateApiKey,
   limiter,
-  auth
+  auth,
 }; 

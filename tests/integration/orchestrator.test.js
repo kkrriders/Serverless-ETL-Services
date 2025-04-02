@@ -1,6 +1,6 @@
 const { orchestrate } = require('../../src/handlers/orchestratorHandler');
 const axios = require('axios');
-const mongoose = require('mongoose');
+const _mongoose = require('mongoose');
 
 // Mock the axios module
 jest.mock('axios');

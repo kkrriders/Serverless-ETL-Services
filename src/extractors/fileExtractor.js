@@ -97,12 +97,12 @@ function parseCSV(content) {
     
     Readable.from(content)
       .pipe(csv())
-      .on('data', (data) => results.push(data))
+      .on('data', data => results.push(data))
       .on('end', () => resolve(results))
-      .on('error', (error) => reject(new AppError(`CSV parsing error: ${error.message}`, 400)));
+      .on('error', error => reject(new AppError(`CSV parsing error: ${error.message}`, 400)));
   });
 }
 
 module.exports = {
-  extractFromFile
+  extractFromFile,
 }; 

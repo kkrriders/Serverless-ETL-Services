@@ -59,14 +59,14 @@ async function readCsvFile(filePath, options = {}) {
     const results = [];
     
     fs.createReadStream(filePath)
-      .on('error', (error) => {
+      .on('error', error => {
         logger.error(`Error reading CSV file ${filePath}: ${error.message}`);
         reject(new AppError(`Failed to read CSV file: ${error.message}`, 500));
       })
       .pipe(csv(options))
-      .on('data', (data) => results.push(data))
+      .on('data', data => results.push(data))
       .on('end', () => resolve(results))
-      .on('error', (error) => {
+      .on('error', error => {
         logger.error(`Error parsing CSV file ${filePath}: ${error.message}`);
         reject(new AppError(`Failed to parse CSV file: ${error.message}`, 500));
       });
@@ -91,7 +91,7 @@ async function writeCsvFile(filePath, data, options = {}) {
     
     const csvData = stringify(data, {
       header: true,
-      ...options
+      ...options,
     });
     
     await fs.promises.writeFile(filePath, csvData, 'utf8');
@@ -151,5 +151,5 @@ module.exports = {
   readCsvFile,
   writeCsvFile,
   ensureTempDir,
-  cleanupTempFiles
+  cleanupTempFiles,
 }; 

@@ -44,7 +44,7 @@ async function loadToMongo(data, options = {}) {
           
           if (upsert) {
             // Perform upsert operations
-            const operations = batch.map(item => ({
+            const _operations = batch.map(item => ({
               updateOne: {
                 filter: { [upsertKey]: item[upsertKey] },
                 update: { $set: item },
@@ -52,7 +52,7 @@ async function loadToMongo(data, options = {}) {
               },
             }));
             
-            const result = await coll.bulkWrite(operations);
+            const result = await coll.bulkWrite(_operations);
             insertedCount += result.upsertedCount || 0;
             updatedCount += result.modifiedCount || 0;
           } else {
@@ -64,7 +64,7 @@ async function loadToMongo(data, options = {}) {
           // Load to the default Data model
           if (upsert) {
             // Perform upsert operations
-            const operations = await Promise.all(
+            const _operations = await Promise.all(
               batch.map(async item => {
                 const filter = { [upsertKey]: item[upsertKey] };
                 const doc = await DataModel.findOne(filter);
@@ -76,7 +76,7 @@ async function loadToMongo(data, options = {}) {
                   await DataModel.create(item);
                   insertedCount++;
                 }
-              })
+              }),
             );
           } else {
             // Perform insert operations
@@ -106,7 +106,7 @@ async function loadToMongo(data, options = {}) {
           const result = await coll.updateOne(
             { [upsertKey]: data[upsertKey] },
             { $set: data },
-            { upsert: true }
+            { upsert: true },
           );
           
           const isInserted = result.upsertedCount === 1;

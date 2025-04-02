@@ -65,7 +65,7 @@ async function loadToFile(data, destination) {
       case 'txt':
         try {
           const textContent = data.map(item => 
-            typeof item === 'string' ? item : JSON.stringify(item)
+            typeof item === 'string' ? item : JSON.stringify(item),
           ).join('\n');
           await fs.writeFile(filePath, textContent, 'utf8');
           result = { path: filePath, format: fileFormat, count: data.length };
@@ -114,13 +114,13 @@ async function writeCSV(data, filePath) {
       new Set(
         data.reduce((allKeys, obj) => {
           return allKeys.concat(Object.keys(obj));
-        }, [])
-      )
+        }, []),
+      ),
     ).map(key => ({ id: key, title: key }));
 
     const csvWriter = createObjectCsvWriter({
       path: filePath,
-      header: headers
+      header: headers,
     });
 
     csvWriter.writeRecords(data)
@@ -134,5 +134,5 @@ async function writeCSV(data, filePath) {
 }
 
 module.exports = {
-  loadToFile
+  loadToFile,
 }; 

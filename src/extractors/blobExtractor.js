@@ -6,6 +6,8 @@ const logger = require('../utils/logger');
 const { AppError } = require('../utils/errorHandler');
 const { getBlobClient } = require('../utils/blobUtils');
 const monitor = require('../utils/monitor');
+const { BlobServiceClient } = require('@azure/storage-blob');
+const config = require('../config/config');
 
 /**
  * Extract data from Azure Blob Storage
@@ -106,7 +108,7 @@ async function listBlobs(options) {
 
     // Create the BlobServiceClient
     const blobServiceClient = BlobServiceClient.fromConnectionString(
-      config.azureStorage.connectionString
+      config.azureStorage.connectionString,
     );
 
     // Get a reference to the container
@@ -132,10 +134,10 @@ async function listBlobs(options) {
  * @param {ReadableStream} readableStream - The readable stream
  * @returns {Promise<string>} The stream content as a string
  */
-async function streamToString(readableStream) {
+async function _streamToString(readableStream) {
   return new Promise((resolve, reject) => {
     const chunks = [];
-    readableStream.on('data', (data) => {
+    readableStream.on('data', data => {
       chunks.push(data.toString());
     });
     readableStream.on('end', () => {
@@ -150,7 +152,7 @@ async function streamToString(readableStream) {
  * @param {string} content - CSV content
  * @returns {Array<Object>} Parsed CSV data
  */
-function parseCSV(content) {
+function _parseCSV(content) {
   const lines = content.split('\n');
   const headers = lines[0].split(',').map(header => header.trim());
   

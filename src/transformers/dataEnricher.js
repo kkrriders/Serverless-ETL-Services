@@ -108,7 +108,7 @@ async function generateSummaries(data, textFields, maxLength = 100) {
     
     if (Array.isArray(data)) {
       const summaries = await Promise.all(
-        data.map(async (item) => {
+        data.map(async item => {
           const result = { ...item };
           
           for (const field of textFields) {
@@ -119,7 +119,7 @@ async function generateSummaries(data, textFields, maxLength = 100) {
           }
           
           return result;
-        })
+        }),
       );
       
       logger.info(`Generated summaries for ${summaries.length} items`);
@@ -171,7 +171,7 @@ async function categorizeData(data, categories, textField) {
     
     if (Array.isArray(data)) {
       const categorized = await Promise.all(
-        data.map(async (item) => {
+        data.map(async item => {
           if (textField in item && typeof item[textField] === 'string') {
             const result = { ...item };
             const categorization = await enrichWithLLM({ text: item[textField] }, instruction);
@@ -193,7 +193,7 @@ async function categorizeData(data, categories, textField) {
           }
           
           return { ...item, category: 'Other' };
-        })
+        }),
       );
       
       logger.info(`Categorized ${categorized.length} items`);

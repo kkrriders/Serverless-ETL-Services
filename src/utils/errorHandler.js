@@ -48,8 +48,8 @@ function formatErrorResponse(error) {
         message: error.message || 'An unexpected error occurred',
         status: statusCode,
         timestamp: error.timestamp || new Date().toISOString(),
-      }
-    }
+      },
+    },
   };
   
   // Add stack trace in development mode
@@ -142,7 +142,7 @@ async function retry(fn, options = {}) {
  * @param {Object} res - Express response object
  * @param {Function} next - Express next function
  */
-function errorHandler(err, req, res, next) {
+function errorHandler(err, req, res, _next) {
   // Format the error response
   const errorResponse = formatErrorResponse(err);
   
@@ -160,5 +160,5 @@ module.exports = {
   catchAsync,
   handlePromise,
   retry,
-  errorHandler
+  errorHandler,
 }; 

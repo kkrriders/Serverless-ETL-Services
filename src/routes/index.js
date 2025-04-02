@@ -2,7 +2,7 @@
  * Express routes for the ETL service
  */
 const express = require('express');
-const path = require('path');
+const _path = require('path');
 const { extract } = require('../handlers/extractHandler');
 const { transform } = require('../handlers/transformHandler');
 const { load } = require('../handlers/loadHandler');
@@ -39,7 +39,7 @@ router.get('/health', catchAsync(async (req, res) => {
     message: 'Service is running',
     ollama: ollamaAvailable ? 'available' : 'unavailable',
     timestamp: new Date().toISOString(),
-    version: process.env.npm_package_version || '1.0.0'
+    version: process.env.npm_package_version || '1.0.0',
   });
 }));
 
@@ -88,14 +88,14 @@ router.post('/admin/reset-metrics', validateApiKey, (req, res) => {
     return res.status(403).json({
       success: false,
       error: 'Forbidden',
-      message: 'Admin API key required'
+      message: 'Admin API key required',
     });
   }
   
   monitor.resetMetrics();
   res.status(200).json({
     success: true,
-    message: 'Metrics reset successfully'
+    message: 'Metrics reset successfully',
   });
 });
 
@@ -111,8 +111,8 @@ router.use('*', (req, res) => {
       'POST /extract',
       'POST /transform',
       'POST /load',
-      'POST /orchestrate'
-    ]
+      'POST /orchestrate',
+    ],
   });
 });
 

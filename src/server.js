@@ -47,7 +47,7 @@ app.use('/docs', express.static(path.join(__dirname, '../docs')));
 app.use('/', routes);
 
 // Global error handler
-app.use((err, req, res, next) => {
+app.use((err, req, res, _next) => {
   logger.error(`Unhandled error: ${err.message}`);
   const errorResponse = formatErrorResponse(err);
   res.status(errorResponse.status).json(errorResponse.body);

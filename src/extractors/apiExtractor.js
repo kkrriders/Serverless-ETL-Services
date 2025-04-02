@@ -56,14 +56,14 @@ async function extractFromApi(source) {
         {
           url: source.url,
           statusCode: error.response.status,
-          data: error.response.data
-        }
+          data: error.response.data,
+        },
       );
     } else if (error.request) {
       throw new AppError(
         `API request failed to receive a response: ${error.message}`,
         500,
-        { url: source.url }
+        { url: source.url },
       );
     } else if (error instanceof AppError) {
       throw error;

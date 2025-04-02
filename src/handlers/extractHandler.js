@@ -2,15 +2,15 @@ const { extractFromApi } = require('../extractors/apiExtractor');
 const { extractFromMongo } = require('../extractors/mongoExtractor');
 const { extractFromBlob } = require('../extractors/blobExtractor');
 const { extractFromFile } = require('../extractors/fileExtractor');
-const { formatErrorResponse } = require('../utils/errorHandler');
+const { _formatErrorResponse } = require('../utils/errorHandler');
 const { validateConfig } = require('../config/config');
 const logger = require('../utils/logger');
 const DataModel = require('../models/dataModel');
-const axios = require('axios');
+const _axios = require('axios');
 const { AppError } = require('../utils/errorHandler');
-const { connectToDatabase } = require('../utils/db');
-const { readJsonFile, readCsvFile } = require('../utils/fileUtils');
-const { getBlobClient } = require('../utils/blobUtils');
+const { _connectToDatabase } = require('../utils/db');
+const { _readJsonFile, _readCsvFile } = require('../utils/fileUtils');
+const { _getBlobClient } = require('../utils/blobUtils');
 const monitor = require('../utils/monitor');
 
 /**
@@ -165,8 +165,8 @@ async function extract(context, req) {
     
     logger.info('Successfully extracted data');
     
-    const duration = Date.now() - startTime;
-    logger.info(`Data extraction completed in ${duration}ms`);
+    const _duration = Date.now() - startTime;
+    logger.info(`Data extraction completed in ${_duration}ms`);
     
     return {
       status: 200,
@@ -174,11 +174,11 @@ async function extract(context, req) {
         success: true,
         data: extractedData,
         source: source.type,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       },
     };
   } catch (error) {
-    const duration = Date.now() - startTime;
+    const _duration = Date.now() - startTime;
     logger.error(`Error extracting data: ${error.message}`);
     monitor.trackError(error, 'extract');
     
@@ -188,7 +188,7 @@ async function extract(context, req) {
       body: {
         success: false,
         error: error.message,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       },
     };
   }
@@ -217,7 +217,7 @@ function detectFormatFromPath(filePath) {
 async function streamToBuffer(readableStream) {
   return new Promise((resolve, reject) => {
     const chunks = [];
-    readableStream.on('data', (data) => {
+    readableStream.on('data', data => {
       chunks.push(data instanceof Buffer ? data : Buffer.from(data));
     });
     readableStream.on('end', () => {
@@ -230,5 +230,5 @@ async function streamToBuffer(readableStream) {
 module.exports = {
   extract,
   detectFormatFromPath,
-  streamToBuffer
+  streamToBuffer,
 }; 

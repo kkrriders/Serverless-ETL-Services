@@ -13,8 +13,8 @@ const metrics = {
     successful: 0,
     failed: 0,
     totalTime: 0,
-    avgTime: 0
-  }
+    avgTime: 0,
+  },
 };
 
 /**
@@ -28,7 +28,7 @@ function trackError(error, source) {
     stack: error.stack,
     source: source || 'unknown',
     status: error.status || 500,
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   };
   
   metrics.errors.push(errorData);
@@ -54,7 +54,7 @@ function trackRequest(req, res, duration) {
     path: req.path,
     status: res.statusCode,
     duration,
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   };
   
   metrics.requests.push(requestData);
@@ -78,7 +78,7 @@ function trackOperation(name, duration, success = true) {
       totalDuration: 0,
       failures: 0,
       successes: 0,
-      avgDuration: 0
+      avgDuration: 0,
     };
   }
   
@@ -138,9 +138,9 @@ function getMetrics() {
     requests: metrics.requests.length,
     operations: Object.keys(metrics.operations).map(name => ({
       name,
-      ...metrics.operations[name]
+      ...metrics.operations[name],
     })),
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   };
 }
 
@@ -163,7 +163,7 @@ function resetMetrics() {
     successful: 0,
     failed: 0,
     totalTime: 0,
-    avgTime: 0
+    avgTime: 0,
   };
 }
 
@@ -180,17 +180,17 @@ function getHealthMetrics() {
     timestamp: new Date().toISOString(),
     uptime: {
       seconds: Math.floor(uptime),
-      formatted: formatUptime(uptime)
+      formatted: formatUptime(uptime),
     },
     requests: {
       total: metrics.requests.length,
-      recentErrors: metrics.errors.length
+      recentErrors: metrics.errors.length,
     },
     operations: Object.entries(metrics.operations).map(([name, data]) => ({
       name,
       count: data.count,
       successRate: data.count > 0 ? `${((data.successes / data.count) * 100).toFixed(2)}%` : '0%',
-      avgDuration: `${Math.round(data.avgDuration)}ms`
+      avgDuration: `${Math.round(data.avgDuration)}ms`,
     })),
     ollama: {
       calls: metrics.ollama.successful + metrics.ollama.failed,
@@ -199,8 +199,8 @@ function getHealthMetrics() {
       avgTime: `${Math.round(metrics.ollama.avgTime)}ms`,
       successRate: (metrics.ollama.successful + metrics.ollama.failed) > 0
         ? `${((metrics.ollama.successful / (metrics.ollama.successful + metrics.ollama.failed)) * 100).toFixed(2)}%`
-        : '0%'
-    }
+        : '0%',
+    },
   };
 }
 
@@ -237,5 +237,5 @@ module.exports = {
   getMetrics,
   getErrors,
   resetMetrics,
-  getHealthMetrics
+  getHealthMetrics,
 }; 

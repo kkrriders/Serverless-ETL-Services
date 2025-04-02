@@ -5,7 +5,7 @@ const { formatErrorResponse } = require('../utils/errorHandler');
 const { validateConfig } = require('../config/config');
 const logger = require('../utils/logger');
 const DataModel = require('../models/dataModel');
-const mongoose = require('mongoose');
+const _mongoose = require('mongoose');
 
 /**
  * Transform data using various transformers
@@ -98,7 +98,7 @@ async function transform(context, req) {
           const validationResult = validateData(
             transformedData,
             transformations.validate.schema,
-            transformations.validate.removeInvalid
+            transformations.validate.removeInvalid,
           );
           
           transformationResults.validate = {
@@ -136,7 +136,7 @@ async function transform(context, req) {
           transformedData = await generateSummaries(
             transformedData,
             transformations.summarize.fields,
-            transformations.summarize.maxLength
+            transformations.summarize.maxLength,
           );
           transformationResults.summarize = { applied: true };
         } catch (error) {
@@ -152,7 +152,7 @@ async function transform(context, req) {
           transformedData = await categorizeData(
             transformedData,
             transformations.categorize.categories,
-            transformations.categorize.field
+            transformations.categorize.field,
           );
           transformationResults.categorize = { applied: true };
         } catch (error) {

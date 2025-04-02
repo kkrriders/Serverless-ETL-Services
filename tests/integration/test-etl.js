@@ -19,7 +19,7 @@ const TEMP_DIR = path.join(__dirname, '../../temp');
 const testData = [
   { id: 1, name: 'Product A', description: 'A basic product for testing' },
   { id: 2, name: 'Product B', description: 'A simple gadget for demo purposes' },
-  { id: 3, name: 'Product C', description: 'An essential tool for developers' }
+  { id: 3, name: 'Product C', description: 'An essential tool for developers' },
 ];
 
 // Main test function
@@ -91,15 +91,15 @@ async function testExtract(filePath) {
       source: {
         type: 'file',
         path: filePath,
-        format: 'json'
-      }
+        format: 'json',
+      },
     },
     {
       headers: {
         'Content-Type': 'application/json',
-        'X-API-Key': API_KEY
-      }
-    }
+        'X-API-Key': API_KEY,
+      },
+    },
   );
   
   if (!response.data.success) {
@@ -123,20 +123,20 @@ async function testTransform(data) {
       transformations: {
         clean: {
           removeEmpty: true,
-          textFields: ['name', 'description']
+          textFields: ['name', 'description'],
         },
         enrich: {
           instruction: 'Generate a more detailed product description with at least 3 benefits for each item',
-          fields: ['description']
-        }
-      }
+          fields: ['description'],
+        },
+      },
     },
     {
       headers: {
         'Content-Type': 'application/json',
-        'X-API-Key': API_KEY
-      }
-    }
+        'X-API-Key': API_KEY,
+      },
+    },
   );
   
   if (!response.data.success) {
@@ -162,16 +162,16 @@ async function testLoad(data, outputFilePath) {
         path: outputFilePath,
         format: 'json',
         options: {
-          pretty: true
-        }
-      }
+          pretty: true,
+        },
+      },
     },
     {
       headers: {
         'Content-Type': 'application/json',
-        'X-API-Key': API_KEY
-      }
-    }
+        'X-API-Key': API_KEY,
+      },
+    },
   );
   
   if (!response.data.success) {
@@ -194,29 +194,29 @@ async function testOrchestrate(inputFilePath, outputFilePath) {
       source: {
         type: 'file',
         path: inputFilePath,
-        format: 'json'
+        format: 'json',
       },
       transformations: {
         clean: {
-          removeEmpty: true
+          removeEmpty: true,
         },
         enrich: {
           instruction: 'For each product, generate a marketing tagline that highlights its key benefit',
-          fields: ['description']
-        }
+          fields: ['description'],
+        },
       },
       destination: {
         type: 'file',
         path: outputFilePath,
-        format: 'json'
-      }
+        format: 'json',
+      },
     },
     {
       headers: {
         'Content-Type': 'application/json',
-        'X-API-Key': API_KEY
-      }
-    }
+        'X-API-Key': API_KEY,
+      },
+    },
   );
   
   if (!response.data.success) {

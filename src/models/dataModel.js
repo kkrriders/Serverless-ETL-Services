@@ -79,14 +79,14 @@ const dataSchema = new mongoose.Schema(
       },
       // Load operation result
       loadResult: {
-        type: mongoose.Schema.Types.Mixed
-      }
+        type: mongoose.Schema.Types.Mixed,
+      },
     },
   },
   {
     // Add timestamps (createdAt, updatedAt)
     timestamps: true,
-  }
+  },
 );
 
 // Create text indexes for better search performance

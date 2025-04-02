@@ -15,7 +15,7 @@ async function loadToBlob(data, options = {}) {
       blobName,
       contentType = 'application/json',
       format = 'json',
-      overwrite = true,
+      _overwrite = true,
     } = options;
 
     if (!containerName) {
@@ -30,7 +30,7 @@ async function loadToBlob(data, options = {}) {
 
     // Create the BlobServiceClient
     const blobServiceClient = BlobServiceClient.fromConnectionString(
-      config.azureStorage.connectionString
+      config.azureStorage.connectionString,
     );
 
     // Get a reference to the container

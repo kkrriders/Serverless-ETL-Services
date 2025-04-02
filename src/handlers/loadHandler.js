@@ -1,14 +1,14 @@
 const { loadToMongo } = require('../loaders/mongoLoader');
 const { loadToBlob } = require('../loaders/blobLoader');
 const { loadToFile } = require('../loaders/fileLoader');
-const { formatErrorResponse } = require('../utils/errorHandler');
+const { _formatErrorResponse } = require('../utils/errorHandler');
 const { validateConfig } = require('../config/config');
 const logger = require('../utils/logger');
 const DataModel = require('../models/dataModel');
 const { AppError } = require('../utils/errorHandler');
-const { connectToDatabase } = require('../utils/db');
-const { writeJsonFile, writeCsvFile } = require('../utils/fileUtils');
-const { getBlobClient } = require('../utils/blobUtils');
+const { _connectToDatabase } = require('../utils/db');
+const { _writeJsonFile, _writeCsvFile } = require('../utils/fileUtils');
+const { _getBlobClient } = require('../utils/blobUtils');
 const monitor = require('../utils/monitor');
 
 /**
@@ -23,7 +23,7 @@ async function load(context, req) {
     logger.info('Loading data...');
     validateConfig();
     
-    const { data, recordId, destination, options } = req.body || {};
+    const { data, recordId, destination, _options } = req.body || {};
     
     if (!data && !recordId) {
       throw new AppError('Data or recordId is required', 400);
@@ -102,8 +102,8 @@ async function load(context, req) {
     }
     
     // Log success
-    const duration = Date.now() - startTime;
-    logger.info(`Data loading completed in ${duration}ms`);
+    const _duration = Date.now() - startTime;
+    logger.info(`Data loading completed in ${_duration}ms`);
     
     return {
       status: 200,
@@ -112,11 +112,11 @@ async function load(context, req) {
         result: loadResult,
         recordId: dataRecord?._id,
         destination: destination.type,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       },
     };
   } catch (error) {
-    const duration = Date.now() - startTime;
+    const _duration = Date.now() - startTime;
     logger.error(`Error loading data: ${error.message}`);
     monitor.trackError(error, 'load');
 
@@ -126,8 +126,8 @@ async function load(context, req) {
       body: {
         success: false,
         error: error.message,
-        timestamp: new Date().toISOString()
-      }
+        timestamp: new Date().toISOString(),
+      },
     };
   }
 }
@@ -154,5 +154,5 @@ function detectFormatFromPath(filePath) {
 
 module.exports = {
   load,
-  detectFormatFromPath
+  detectFormatFromPath,
 }; 

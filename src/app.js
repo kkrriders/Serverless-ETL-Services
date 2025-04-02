@@ -58,7 +58,7 @@ app.use((req, res, next) => {
 app.use(errorHandler);
 
 // Handle uncaught exceptions
-process.on('uncaughtException', (error) => {
+process.on('uncaughtException', error => {
   logger.error('UNCAUGHT EXCEPTION:', error);
   monitor.trackError(error, 'uncaughtException');
   
@@ -67,7 +67,7 @@ process.on('uncaughtException', (error) => {
 });
 
 // Handle unhandled promise rejections
-process.on('unhandledRejection', (reason, promise) => {
+process.on('unhandledRejection', (reason, _promise) => {
   logger.error('UNHANDLED REJECTION:', reason);
   monitor.trackError(reason instanceof Error ? reason : new Error(String(reason)), 'unhandledRejection');
 });

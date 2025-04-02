@@ -3,7 +3,7 @@ const {
   formatErrorResponse, 
   catchAsync, 
   handlePromise, 
-  retry 
+  retry, 
 } = require('../../../src/utils/errorHandler');
 
 describe('errorHandler', () => {
