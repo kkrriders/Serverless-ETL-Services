@@ -85,3 +85,144 @@
 2025-04-01 15:01:40:140 [32minfo[39m: [32m  POST /load[39m
 2025-04-01 15:01:40:140 [32minfo[39m: [32m  POST /orchestrate[39m
 2025-04-01 15:05:32:532 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-02 14:25:00:250 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-02 14:25:00:250 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-02 14:25:00:250 [32minfo[39m: [32mOllama service is available[39m
+2025-04-02 14:25:00:250 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-02 14:25:00:250 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-02 14:25:00:250 [32minfo[39m: [32m  GET /health[39m
+2025-04-02 14:25:00:250 [32minfo[39m: [32m  POST /extract[39m
+2025-04-02 14:25:00:250 [32minfo[39m: [32m  POST /transform[39m
+2025-04-02 14:25:00:250 [32minfo[39m: [32m  POST /load[39m
+2025-04-02 14:25:00:250 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-02 14:25:06:256 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-17 14:25:12:2512 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-17 14:25:12:2512 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-17 14:25:12:2512 [32minfo[39m: [32mOllama service is available[39m
+2025-04-17 14:25:12:2512 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-17 14:25:12:2512 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-17 14:25:12:2512 [32minfo[39m: [32m  GET /health[39m
+2025-04-17 14:25:12:2512 [32minfo[39m: [32m  POST /extract[39m
+2025-04-17 14:25:12:2512 [32minfo[39m: [32m  POST /transform[39m
+2025-04-17 14:25:12:2512 [32minfo[39m: [32m  POST /load[39m
+2025-04-17 14:25:12:2512 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-17 14:25:19:2519 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-17 14:27:13:2713 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-17 14:27:13:2713 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-17 14:27:13:2713 [32minfo[39m: [32mOllama service is available[39m
+2025-04-17 14:27:13:2713 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-17 14:27:13:2713 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-17 14:27:13:2713 [32minfo[39m: [32m  GET /health[39m
+2025-04-17 14:27:13:2713 [32minfo[39m: [32m  POST /extract[39m
+2025-04-17 14:27:13:2713 [32minfo[39m: [32m  POST /transform[39m
+2025-04-17 14:27:13:2713 [32minfo[39m: [32m  POST /load[39m
+2025-04-17 14:27:13:2713 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-17 14:27:24:2724 [33mwarn[39m: [33mAPI key missing - GET /meta.json[39m
+2025-04-17 14:27:24:2724 [33mwarn[39m: [33mAPI key missing - GET /meta.json[39m
+2025-04-17 14:27:24:2724 [33mwarn[39m: [33mAPI key missing - GET /favicon.ico[39m
+2025-04-17 14:29:40:2940 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-17 15:01:20:120 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-17 15:01:20:120 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-17 15:01:20:120 [32minfo[39m: [32mOllama service is available[39m
+2025-04-17 15:01:20:120 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-17 15:01:20:120 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-17 15:01:20:120 [32minfo[39m: [32m  GET /health[39m
+2025-04-17 15:01:20:120 [32minfo[39m: [32m  POST /extract[39m
+2025-04-17 15:01:20:120 [32minfo[39m: [32m  POST /transform[39m
+2025-04-17 15:01:20:120 [32minfo[39m: [32m  POST /load[39m
+2025-04-17 15:01:20:120 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-17 15:03:10:310 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-17 15:13:42:1342 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-17 15:13:42:1342 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-17 15:13:42:1342 [32minfo[39m: [32mOllama service is available[39m
+2025-04-17 15:13:42:1342 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-17 15:13:42:1342 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-17 15:13:42:1342 [32minfo[39m: [32m  GET /health[39m
+2025-04-17 15:13:42:1342 [32minfo[39m: [32m  POST /extract[39m
+2025-04-17 15:13:42:1342 [32minfo[39m: [32m  POST /transform[39m
+2025-04-17 15:13:42:1342 [32minfo[39m: [32m  POST /load[39m
+2025-04-17 15:13:42:1342 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-17 15:17:17:1717 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-17 15:19:41:1941 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-17 15:19:41:1941 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-17 15:19:41:1941 [32minfo[39m: [32mOllama service is available[39m
+2025-04-17 15:19:41:1941 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-17 15:19:41:1941 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-17 15:19:41:1941 [32minfo[39m: [32m  GET /health[39m
+2025-04-17 15:19:41:1941 [32minfo[39m: [32m  POST /extract[39m
+2025-04-17 15:19:41:1941 [32minfo[39m: [32m  POST /transform[39m
+2025-04-17 15:19:41:1941 [32minfo[39m: [32m  POST /load[39m
+2025-04-17 15:19:41:1941 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-17 15:25:32:2532 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-17 15:29:09:299 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-17 15:29:09:299 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-17 15:29:09:299 [32minfo[39m: [32mOllama service is available[39m
+2025-04-17 15:29:09:299 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-17 15:29:09:299 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-17 15:29:09:299 [32minfo[39m: [32m  GET /health[39m
+2025-04-17 15:29:09:299 [32minfo[39m: [32m  POST /extract[39m
+2025-04-17 15:29:09:299 [32minfo[39m: [32m  POST /transform[39m
+2025-04-17 15:29:09:299 [32minfo[39m: [32m  POST /load[39m
+2025-04-17 15:29:09:299 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-17 15:29:13:2913 [33mwarn[39m: [33mAPI key missing - GET /api/proxy?endpoint=%2Fmetrics[39m
+2025-04-17 15:29:13:2913 [33mwarn[39m: [33mAPI key missing - POST /__nextjs_original-stack-frames[39m
+2025-04-17 15:29:13:2913 [33mwarn[39m: [33mAPI key missing - POST /__nextjs_original-stack-frames[39m
+2025-04-17 15:29:13:2913 [33mwarn[39m: [33mAPI key missing - POST /__nextjs_original-stack-frames[39m
+2025-04-17 15:30:56:3056 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-17 15:36:28:3628 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-17 15:36:28:3628 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-17 15:36:28:3628 [32minfo[39m: [32mOllama service is available[39m
+2025-04-17 15:38:03:383 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-17 15:38:03:383 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-17 15:38:03:383 [32minfo[39m: [32mOllama service is available[39m
+2025-04-17 15:38:03:383 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-17 15:38:03:383 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-17 15:38:03:383 [32minfo[39m: [32m  GET /health[39m
+2025-04-17 15:38:03:383 [32minfo[39m: [32m  POST /extract[39m
+2025-04-17 15:38:03:383 [32minfo[39m: [32m  POST /transform[39m
+2025-04-17 15:38:03:383 [32minfo[39m: [32m  POST /load[39m
+2025-04-17 15:38:03:383 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-17 15:40:16:4016 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-17 15:51:54:5154 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-17 15:51:54:5154 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-17 15:51:54:5154 [32minfo[39m: [32mOllama service is available[39m
+2025-04-17 15:51:54:5154 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-17 15:51:54:5154 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-17 15:51:54:5154 [32minfo[39m: [32m  GET /health[39m
+2025-04-17 15:51:54:5154 [32minfo[39m: [32m  POST /extract[39m
+2025-04-17 15:51:54:5154 [32minfo[39m: [32m  POST /transform[39m
+2025-04-17 15:51:54:5154 [32minfo[39m: [32m  POST /load[39m
+2025-04-17 15:51:54:5154 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-17 15:53:02:532 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-17 15:53:58:5358 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-17 15:53:58:5358 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-17 15:53:58:5358 [32minfo[39m: [32mOllama service is available[39m
+2025-04-17 15:53:58:5358 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-17 15:53:58:5358 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-17 15:53:58:5358 [32minfo[39m: [32m  GET /health[39m
+2025-04-17 15:53:58:5358 [32minfo[39m: [32m  POST /extract[39m
+2025-04-17 15:53:58:5358 [32minfo[39m: [32m  POST /transform[39m
+2025-04-17 15:53:58:5358 [32minfo[39m: [32m  POST /load[39m
+2025-04-17 15:53:58:5358 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-18 09:15:57:1557 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-18 09:15:57:1557 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-18 09:15:57:1557 [32minfo[39m: [32mOllama service is available[39m
+2025-04-18 09:15:57:1557 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-18 09:15:57:1557 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-18 09:15:57:1557 [32minfo[39m: [32m  GET /health[39m
+2025-04-18 09:15:57:1557 [32minfo[39m: [32m  POST /extract[39m
+2025-04-18 09:15:57:1557 [32minfo[39m: [32m  POST /transform[39m
+2025-04-18 09:15:57:1557 [32minfo[39m: [32m  POST /load[39m
+2025-04-18 09:15:57:1557 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-18 09:17:26:1726 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-18 09:20:52:2052 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-18 09:20:52:2052 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-18 09:20:52:2052 [32minfo[39m: [32mOllama service is available[39m
+2025-04-18 09:20:52:2052 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-18 09:20:52:2052 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-18 09:20:52:2052 [32minfo[39m: [32m  GET /health[39m
+2025-04-18 09:20:52:2052 [32minfo[39m: [32m  POST /extract[39m
+2025-04-18 09:20:52:2052 [32minfo[39m: [32m  POST /transform[39m
+2025-04-18 09:20:52:2052 [32minfo[39m: [32m  POST /load[39m
+2025-04-18 09:20:52:2052 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-18 09:34:40:3440 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m

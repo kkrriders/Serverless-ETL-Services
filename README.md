@@ -29,6 +29,7 @@ A scalable, serverless ETL (Extract, Transform, Load) service with generative AI
 - [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
 - [License](#license)
+- [Dashboard](#dashboard)
 
 ## Overview
 
@@ -57,6 +58,37 @@ The service can be used as a standalone local application or deployed to Azure F
   - Azure Blob Storage
 - **End-to-End Pipeline**: Orchestrated ETL process or use individual components
 - **Authentication**: API Key-based authentication for secure endpoints
+
+## Dashboard
+
+A Next.js dashboard application is included to provide a user interface for the ETL service. The dashboard allows you to:
+
+- View system health and metrics
+- Create and manage ETL pipelines
+- Monitor pipeline executions
+- Use the AI Studio for interactive data enrichment
+
+### Dashboard Setup
+
+1. Navigate to the `etl-dashboard` directory
+2. Copy `.env.local.example` to `.env.local` and update the values:
+   ```
+   NEXT_PUBLIC_API_BASE_URL=http://localhost:3000
+   NEXT_PUBLIC_API_KEY=your-secret-api-key-here
+   ```
+3. Ensure the API key matches the one configured in the backend's `.env` file
+4. Install dependencies with `npm install`
+5. Start the dashboard with `npm run dev`
+6. The dashboard will be available at `http://localhost:3001`
+
+### API Authentication
+
+The dashboard communicates with the backend API using the configured API key. The key is stored in the environment variables and used for all API requests.
+
+For security, the dashboard includes:
+- A middleware that protects API routes
+- A proxy API endpoint that forwards requests to the backend
+- An API test page at `/api-test` to verify authentication
 
 ## Architecture
 

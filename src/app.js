@@ -32,7 +32,12 @@ app.use((req, res, next) => {
 app.use(morgan('combined', { stream: { write: message => logger.info(message.trim()) } }));
 
 // Add CORS middleware
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:3000', 'http://localhost:3001'], // Allow requests from both 3000 (backend) and 3001 (dashboard)
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'X-API-Key'],
+  credentials: true,
+}));
 
 // Add JSON body parsing middleware
 app.use(express.json({ limit: '10mb' }));
