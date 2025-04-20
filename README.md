@@ -565,3 +565,10 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Authors
+
+This project was created by:
+
+- **Anshuman** - Lead developer and architect who designed the overall system architecture and implemented the core ETL pipeline components with generative AI integration
+- **Kartik** - Supporting developer who worked on dashboard implementation and documentation

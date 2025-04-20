@@ -2,122 +2,97 @@
 
 import { useEffect, useRef } from "react"
 import { ArrowRight, Database, FileJson, Wand2 } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { Check, ChevronRight, Settings2 } from "lucide-react"
 
 interface PipelineVisualizationProps {
-  pipeline: {
-    id: string
-    name: string
-    status: string
-    source: string
-    destination: string
-    recordsProcessed: number
-  }
+  status: string
+  lastRunTime?: string
+  className?: string
 }
 
-export function PipelineVisualization({ pipeline }: PipelineVisualizationProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
-
-    // Set canvas dimensions
-    const dpr = window.devicePixelRatio || 1
-    const rect = canvas.getBoundingClientRect()
-    canvas.width = rect.width * dpr
-    canvas.height = rect.height * dpr
-    ctx.scale(dpr, dpr)
-
-    // Clear canvas
-    ctx.clearRect(0, 0, rect.width, rect.height)
-
-    // Draw flow lines
-    ctx.beginPath()
-    ctx.strokeStyle = "#e2e8f0"
-    ctx.lineWidth = 2
-
-    // Extract to Transform
-    ctx.moveTo(rect.width * 0.2, rect.height * 0.5)
-    ctx.lineTo(rect.width * 0.4, rect.height * 0.5)
-
-    // Transform to Load
-    ctx.moveTo(rect.width * 0.6, rect.height * 0.5)
-    ctx.lineTo(rect.width * 0.8, rect.height * 0.5)
-
-    ctx.stroke()
-
-    // Draw progress indicator based on status
-    if (pipeline.status === "active" || pipeline.status === "completed") {
-      const gradient = ctx.createLinearGradient(0, 0, rect.width, 0)
-      gradient.addColorStop(0, "#10b981")
-      gradient.addColorStop(1, "#059669")
-
-      ctx.beginPath()
-      ctx.strokeStyle = gradient
-      ctx.lineWidth = 3
-
-      // Extract to Transform
-      ctx.moveTo(rect.width * 0.2, rect.height * 0.5)
-      ctx.lineTo(rect.width * 0.4, rect.height * 0.5)
-
-      // Transform to Load
-      ctx.moveTo(rect.width * 0.6, rect.height * 0.5)
-      ctx.lineTo(rect.width * 0.8, rect.height * 0.5)
-
-      ctx.stroke()
-    } else if (pipeline.status === "failed") {
-      const gradient = ctx.createLinearGradient(0, 0, rect.width, 0)
-      gradient.addColorStop(0, "#ef4444")
-      gradient.addColorStop(1, "#dc2626")
-
-      ctx.beginPath()
-      ctx.strokeStyle = gradient
-      ctx.lineWidth = 3
-
-      // Extract to Transform (completed)
-      ctx.moveTo(rect.width * 0.2, rect.height * 0.5)
-      ctx.lineTo(rect.width * 0.4, rect.height * 0.5)
-
-      ctx.stroke()
-    }
-  }, [pipeline])
+export function PipelineVisualization({ status, lastRunTime, className }: PipelineVisualizationProps) {
+  const isActive = status === "active"
+  const isPaused = status === "paused"
+  const isFailed = status === "failed"
 
   return (
-    <div className="relative h-20 w-full">
-      <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
-      <div className="absolute inset-0 flex items-center justify-between px-4">
-        <div className="flex flex-col items-center gap-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full border bg-background">
-            {pipeline.source === "MongoDB" ? (
-              <Database className="h-5 w-5 text-blue-500" />
-            ) : (
-              <FileJson className="h-5 w-5 text-green-500" />
-            )}
+    <div className={cn("w-full py-4", className)}>
+      <div className="flex flex-col items-center space-y-3 sm:flex-row sm:space-x-8 sm:space-y-0">
+        {/* Extract Stage */}
+        <div className="flex flex-1 items-center">
+          <div className={cn(
+            "flex h-12 w-12 items-center justify-center rounded-full border-2",
+            isActive ? "border-green-500 bg-green-50" : 
+            isFailed ? "border-red-500 bg-red-50" :
+            isPaused ? "border-yellow-500 bg-yellow-50" : "border-gray-300 bg-gray-50"
+          )}>
+            <Database className={cn(
+              "h-6 w-6", 
+              isActive ? "text-green-600" : 
+              isFailed ? "text-red-600" :
+              isPaused ? "text-yellow-600" : "text-gray-500"
+            )} />
           </div>
-          <span className="text-xs font-medium">Extract</span>
+          <div className="ml-4">
+            <p className="text-sm font-medium">Extract</p>
+            <p className="text-xs text-gray-500">Data ingestion</p>
+          </div>
         </div>
-        <ArrowRight className="h-5 w-5 text-muted-foreground" />
-        <div className="flex flex-col items-center gap-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full border bg-background">
-            <Wand2 className="h-5 w-5 text-purple-500" />
+
+        <ChevronRight className="hidden h-5 w-5 text-gray-400 sm:block" />
+
+        {/* Transform Stage */}
+        <div className="flex flex-1 items-center">
+          <div className={cn(
+            "flex h-12 w-12 items-center justify-center rounded-full border-2",
+            isActive ? "border-green-500 bg-green-50" : 
+            isFailed ? "border-red-500 bg-red-50" :
+            isPaused ? "border-yellow-500 bg-yellow-50" : "border-gray-300 bg-gray-50"
+          )}>
+            <Settings2 className={cn(
+              "h-6 w-6", 
+              isActive ? "text-green-600" : 
+              isFailed ? "text-red-600" :
+              isPaused ? "text-yellow-600" : "text-gray-500"
+            )} />
           </div>
-          <span className="text-xs font-medium">Transform</span>
+          <div className="ml-4">
+            <p className="text-sm font-medium">Transform</p>
+            <p className="text-xs text-gray-500">AI processing</p>
+          </div>
         </div>
-        <ArrowRight className="h-5 w-5 text-muted-foreground" />
-        <div className="flex flex-col items-center gap-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full border bg-background">
-            {pipeline.destination === "MongoDB" ? (
-              <Database className="h-5 w-5 text-blue-500" />
-            ) : (
-              <FileJson className="h-5 w-5 text-green-500" />
-            )}
+
+        <ChevronRight className="hidden h-5 w-5 text-gray-400 sm:block" />
+
+        {/* Load Stage */}
+        <div className="flex flex-1 items-center">
+          <div className={cn(
+            "flex h-12 w-12 items-center justify-center rounded-full border-2",
+            isActive ? "border-green-500 bg-green-50" : 
+            isFailed ? "border-red-500 bg-red-50" :
+            isPaused ? "border-yellow-500 bg-yellow-50" : "border-gray-300 bg-gray-50"
+          )}>
+            <FileJson className={cn(
+              "h-6 w-6", 
+              isActive ? "text-green-600" : 
+              isFailed ? "text-red-600" :
+              isPaused ? "text-yellow-600" : "text-gray-500"
+            )} />
           </div>
-          <span className="text-xs font-medium">Load</span>
+          <div className="ml-4">
+            <p className="text-sm font-medium">Load</p>
+            <p className="text-xs text-gray-500">Output delivery</p>
+          </div>
         </div>
       </div>
+
+      {lastRunTime && (
+        <div className="mt-4 flex items-center justify-center text-xs text-gray-500">
+          {isActive && <Check className="mr-1 h-3 w-3 text-green-500" />}
+          Last processed: {lastRunTime}
+        </div>
+      )}
     </div>
   )
 }
