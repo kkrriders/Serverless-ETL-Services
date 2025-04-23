@@ -1,17 +1,32 @@
 {
-  "name": "serverless-etl-genai",
+  "name": "serverless-etl-genai-backend",
   "version": "1.0.0",
-  "description": "A serverless ETL service with generative AI capabilities",
+  "description": "Serverless ETL service with generative AI capabilities",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js",
+    "start:all": "concurrently \"npm run start\" \"npm run dev\"",
+    "start:frontend": "cd etl-dashboard && npm start",
+    "dev": "cd etl-dashboard && npm run dev",
+    "dev:all": "concurrently \"npm run start\" \"npm run dev\"",
+    "dev:backend": "cd . && node src/server.js",
+    "dev:frontend": "cd etl-dashboard && npm run dev",
     "test": "jest",
     "test:integration": "node tests/integration/test-etl.js",
+    "test:etl": "node tests/run-etl-tests.js",
+    "test:generate-data": "node tests/generate-test-data.js",
+    "test:backend-etl": "node tests/backend-etl-test.js",
+    "fix:auth": "node fix-auth.js",
+    "fix:port": "node fix-port.js",
+    "fix:server": "node fix-server.js",
+    "fix:env": "node fix-env.js",
     "lint": "eslint .",
+    "build": "cd etl-dashboard && npm run build",
     "format": "prettier --write .",
-    "deploy": "az functionapp deploy --resource-group serverless-etl-genai-rg --name serverless-etl-genai --src-path . --type node --runtime node:18",
-    "deploy:prod": "NODE_ENV=production npm run deploy"
+    "clean": "rm -rf node_modules",
+    "docker:build": "docker build -t serverless-etl-service .",
+    "docker:run": "docker run -p 8080:8080 --name etl-server -d serverless-etl-service",
+    "setup": "node integration-setup.js"
   },
   "dependencies": {
     "@azure/storage-blob": "^12.17.0",
@@ -29,16 +44,16 @@
     "winston": "^3.11.0"
   },
   "devDependencies": {
+    "concurrently": "^9.1.2",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
     "jest": "^29.7.0",
     "nodemon": "^3.0.3",
-    "prettier": "^3.2.5"
+    "prettier": "^3.2.5",
+    "form-data": "^4.0.0"
   },
   "engines": {
     "node": ">=18.0.0"
-  },
-  "author": "",
-  "license": "MIT"
+  }
 }

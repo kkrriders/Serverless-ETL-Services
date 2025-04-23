@@ -25,8 +25,18 @@ try {
   logger.info('Continuing with available configuration...');
 }
 
+// CORS configuration for Vercel frontend
+const corsOptions = {
+  origin: process.env.CORS_ORIGINS 
+    ? process.env.CORS_ORIGINS.split(',') 
+    : ['http://localhost:3001', 'https://localhost:3001'], // Default or development origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-API-Key'],
+  credentials: true,
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -54,7 +64,8 @@ app.use((err, req, res, _next) => {
 });
 
 // Start the server
-const PORT = process.env.PORT || 3000;
+const DEFAULT_PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
+const MAX_RETRIES = 10; // Maximum number of ports to try
 
 // Connect to database and start server
 async function startServer() {
@@ -84,18 +95,43 @@ async function startServer() {
       logger.warn(`Failed to check Ollama availability: ${error.message}`);
     }
 
-    // Start the Express server
-    app.listen(PORT, () => {
-      logger.info(`Server running at http://localhost:${PORT}`);
-      logger.info('Available endpoints:');
-      logger.info('  GET /health');
-      logger.info('  POST /extract');
-      logger.info('  POST /transform');
-      logger.info('  POST /load');
-      logger.info('  POST /orchestrate');
-    });
+    // Function to try listening on a port
+    const tryListen = (port, retriesLeft) => {
+      const server = app.listen(port, () => {
+        logger.info(`Server running at http://localhost:${port}`);
+        logger.info('Available endpoints:');
+        logger.info('  GET /health');
+        logger.info('  POST /extract');
+        logger.info('  POST /transform');
+        logger.info('  POST /load');
+        logger.info('  POST /orchestrate');
+      });
+
+      server.on('error', err => {
+        if (err.code === 'EADDRINUSE') {
+          logger.warn(`Port ${port} is already in use.`);
+          if (retriesLeft > 0) {
+            const nextPort = port + 1;
+            logger.info(`Attempting to use port ${nextPort}...`);
+            tryListen(nextPort, retriesLeft - 1);
+          } else {
+            logger.error(`Could not find an available port after ${MAX_RETRIES} attempts.`);
+            process.exit(1);
+          }
+        } else {
+          logger.error(`Failed to start server: ${err.message}`);
+          process.exit(1);
+        }
+      });
+    };
+
+    // Start trying to listen
+    tryListen(DEFAULT_PORT, MAX_RETRIES);
+
   } catch (error) {
-    logger.error(`Failed to start server: ${error.message}`);
+    // This catch block might be less likely to be hit now,
+    // as errors during listen are handled by the server.on('error') handler.
+    logger.error(`Failed to initiate server startup: ${error.message}`);
     process.exit(1);
   }
 }

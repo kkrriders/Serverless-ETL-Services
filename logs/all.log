@@ -237,3 +237,616 @@
 2025-04-18 11:25:37:2537 [32minfo[39m: [32m  POST /load[39m
 2025-04-18 11:25:37:2537 [32minfo[39m: [32m  POST /orchestrate[39m
 2025-04-18 11:27:44:2744 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-20 19:59:22:5922 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 19:59:22:5922 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 19:59:22:5922 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 19:59:22:5922 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-20 19:59:22:5922 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 19:59:22:5922 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 19:59:22:5922 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 19:59:22:5922 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 19:59:22:5922 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 19:59:22:5922 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 20:01:27:127 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-20 20:09:05:95 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 20:09:05:95 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 20:09:05:95 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 20:09:05:95 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-20 20:09:05:95 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 20:09:05:95 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 20:09:05:95 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 20:09:05:95 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 20:09:05:95 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 20:09:05:95 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 20:10:43:1043 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-20 20:12:49:1249 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 20:12:49:1249 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 20:12:49:1249 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 20:12:49:1249 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-20 20:12:49:1249 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 20:12:49:1249 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 20:12:49:1249 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 20:12:49:1249 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 20:12:49:1249 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 20:12:49:1249 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 20:20:50:2050 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-20 20:23:23:2323 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 20:23:23:2323 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 20:23:23:2323 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 20:23:23:2323 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-20 20:23:23:2323 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 20:23:23:2323 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 20:23:23:2323 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 20:23:23:2323 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 20:23:23:2323 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 20:23:23:2323 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 20:25:25:2525 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-20 21:11:29:1129 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 21:11:29:1129 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 21:11:29:1129 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 21:11:29:1129 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-20 21:11:29:1129 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 21:11:29:1129 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 21:11:29:1129 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 21:11:29:1129 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 21:11:29:1129 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 21:11:29:1129 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:20:55:2055 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:20:55:2055 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:20:55:2055 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:21:52:2152 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:21:52:2152 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:21:52:2152 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:21:52:2152 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:21:52:2152 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:21:52:2152 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:21:52:2152 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:21:52:2152 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:21:52:2152 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:21:52:2152 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:21:52:2152 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:21:52:2152 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:21:57:2157 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:21:57:2157 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:21:57:2157 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:21:57:2157 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:21:57:2157 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:21:57:2157 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:21:57:2157 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:21:57:2157 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:21:57:2157 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:21:57:2157 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:21:57:2157 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:21:57:2157 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:22:01:221 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:22:01:221 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:22:01:221 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:22:01:221 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:22:01:221 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:22:01:221 [33mwarn[39m: [33mPort 3001 is already in use.[39m
+2025-04-20 18:22:01:221 [32minfo[39m: [32mAttempting to use port 3002...[39m
+2025-04-20 18:22:01:221 [32minfo[39m: [32mServer running at http://localhost:3002[39m
+2025-04-20 18:22:01:221 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:22:01:221 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:22:01:221 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:22:01:221 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:22:01:221 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:22:01:221 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:23:27:2327 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:23:27:2327 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:23:27:2327 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:23:27:2327 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:23:27:2327 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:23:27:2327 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:23:27:2327 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:23:27:2327 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:23:27:2327 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:23:27:2327 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:23:27:2327 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:23:27:2327 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:23:27:2327 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:23:27:2327 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:23:27:2327 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:23:27:2327 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:23:27:2327 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:23:27:2327 [33mwarn[39m: [33mPort 3001 is already in use.[39m
+2025-04-20 18:23:27:2327 [32minfo[39m: [32mAttempting to use port 3002...[39m
+2025-04-20 18:23:27:2327 [32minfo[39m: [32mServer running at http://localhost:3002[39m
+2025-04-20 18:23:27:2327 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:23:27:2327 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:23:27:2327 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:23:27:2327 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:23:27:2327 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:23:27:2327 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:23:42:2342 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-20 18:23:47:2347 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:23:47:2347 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:23:47:2347 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:23:47:2347 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:23:47:2347 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:23:47:2347 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:23:47:2347 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:23:47:2347 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:23:47:2347 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:23:47:2347 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:23:47:2347 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:23:47:2347 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:23:48:2348 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:23:48:2348 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:23:48:2348 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:23:48:2348 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:23:48:2348 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:23:48:2348 [33mwarn[39m: [33mPort 3001 is already in use.[39m
+2025-04-20 18:23:48:2348 [32minfo[39m: [32mAttempting to use port 3002...[39m
+2025-04-20 18:23:48:2348 [32minfo[39m: [32mServer running at http://localhost:3002[39m
+2025-04-20 18:23:48:2348 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:23:48:2348 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:23:48:2348 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:23:48:2348 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:23:48:2348 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:23:48:2348 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:26:19:2619 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:26:19:2619 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:26:19:2619 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:26:19:2619 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:26:19:2619 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:26:19:2619 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:26:19:2619 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:26:19:2619 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:26:19:2619 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:26:19:2619 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:26:19:2619 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:26:19:2619 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:26:19:2619 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:26:19:2619 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:26:19:2619 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:26:19:2619 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:26:19:2619 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:26:19:2619 [33mwarn[39m: [33mPort 3001 is already in use.[39m
+2025-04-20 18:26:19:2619 [32minfo[39m: [32mAttempting to use port 3002...[39m
+2025-04-20 18:26:19:2619 [32minfo[39m: [32mServer running at http://localhost:3002[39m
+2025-04-20 18:26:19:2619 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:26:19:2619 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:26:19:2619 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:26:19:2619 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:26:19:2619 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:26:19:2619 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:26:57:2657 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:26:57:2657 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:26:57:2657 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:26:57:2657 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:26:57:2657 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:26:57:2657 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:26:57:2657 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:26:57:2657 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:26:57:2657 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:26:57:2657 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:26:57:2657 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:26:57:2657 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:26:57:2657 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:26:57:2657 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:26:57:2657 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:26:57:2657 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:26:57:2657 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:26:57:2657 [33mwarn[39m: [33mPort 3001 is already in use.[39m
+2025-04-20 18:26:57:2657 [32minfo[39m: [32mAttempting to use port 3002...[39m
+2025-04-20 18:26:57:2657 [32minfo[39m: [32mServer running at http://localhost:3002[39m
+2025-04-20 18:26:57:2657 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:26:57:2657 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:26:57:2657 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:26:57:2657 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:26:57:2657 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:26:57:2657 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:27:27:2727 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:27:27:2727 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:27:27:2727 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:27:27:2727 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:27:28:2728 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:27:28:2728 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:27:28:2728 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:27:28:2728 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:27:28:2728 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:27:28:2728 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:27:28:2728 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:27:28:2728 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:27:28:2728 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:27:28:2728 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:27:28:2728 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:27:28:2728 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:27:28:2728 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:27:28:2728 [33mwarn[39m: [33mPort 3001 is already in use.[39m
+2025-04-20 18:27:28:2728 [32minfo[39m: [32mAttempting to use port 3002...[39m
+2025-04-20 18:27:28:2728 [32minfo[39m: [32mServer running at http://localhost:3002[39m
+2025-04-20 18:27:28:2728 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:27:28:2728 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:27:28:2728 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:27:28:2728 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:27:28:2728 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:27:28:2728 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:27:31:2731 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-20 18:27:51:2751 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:27:51:2751 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:27:51:2751 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:27:51:2751 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:27:51:2751 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:27:51:2751 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:27:51:2751 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:27:51:2751 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:27:51:2751 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:27:51:2751 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:27:51:2751 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:27:51:2751 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:28:38:2838 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-20 18:29:39:2939 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:29:39:2939 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:29:39:2939 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:29:39:2939 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:29:39:2939 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:29:39:2939 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:29:39:2939 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:29:39:2939 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:29:39:2939 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:29:39:2939 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:29:39:2939 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:29:39:2939 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:29:48:2948 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:29:48:2948 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:29:48:2948 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:29:48:2948 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:29:48:2948 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:29:48:2948 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:29:48:2948 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:29:48:2948 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:29:48:2948 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:29:48:2948 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:29:48:2948 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:29:48:2948 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:29:57:2957 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:29:57:2957 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:29:57:2957 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:29:57:2957 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:29:57:2957 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:29:57:2957 [33mwarn[39m: [33mPort 3001 is already in use.[39m
+2025-04-20 18:29:57:2957 [32minfo[39m: [32mAttempting to use port 3002...[39m
+2025-04-20 18:29:57:2957 [32minfo[39m: [32mServer running at http://localhost:3002[39m
+2025-04-20 18:29:57:2957 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:29:57:2957 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:29:57:2957 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:29:57:2957 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:29:57:2957 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:29:57:2957 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:30:08:308 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:30:08:308 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:30:08:308 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:30:08:308 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:30:08:308 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:30:08:308 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:30:08:308 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:30:08:308 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:30:08:308 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:30:08:308 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:30:08:308 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:30:08:308 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:30:08:308 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:30:08:308 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:30:08:308 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:30:08:308 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:30:08:308 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:30:08:308 [33mwarn[39m: [33mPort 3001 is already in use.[39m
+2025-04-20 18:30:08:308 [32minfo[39m: [32mAttempting to use port 3002...[39m
+2025-04-20 18:30:08:308 [32minfo[39m: [32mServer running at http://localhost:3002[39m
+2025-04-20 18:30:08:308 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:30:08:308 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:30:08:308 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:30:08:308 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:30:08:308 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:30:08:308 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:30:39:3039 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-20 18:32:31:3231 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:32:31:3231 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:32:31:3231 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:32:31:3231 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:32:31:3231 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:32:31:3231 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:32:31:3231 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:32:31:3231 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:32:31:3231 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:32:31:3231 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:32:31:3231 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:32:31:3231 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:32:57:3257 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:32:57:3257 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:32:57:3257 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:32:57:3257 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:32:57:3257 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:32:57:3257 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:32:57:3257 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:32:57:3257 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:32:57:3257 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:32:57:3257 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:32:57:3257 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:32:57:3257 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:33:01:331 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:33:01:331 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:33:01:331 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:33:01:331 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:33:01:331 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:33:01:331 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:33:01:331 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:33:01:331 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:33:01:331 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:33:01:331 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:33:01:331 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:33:01:331 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:33:07:337 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:33:07:337 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:33:07:337 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:33:07:337 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:33:07:337 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:33:07:337 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:33:07:337 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:33:07:337 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:33:07:337 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:33:07:337 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:33:07:337 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:33:07:337 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:33:08:338 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:33:08:338 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:33:08:338 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:33:08:338 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:33:08:338 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:33:08:338 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:33:08:338 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:33:08:338 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:33:08:338 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:33:08:338 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:33:08:338 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:33:08:338 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:33:33:3333 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:33:33:3333 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:33:33:3333 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:33:33:3333 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:33:33:3333 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:33:33:3333 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:33:33:3333 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:33:33:3333 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:33:33:3333 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:33:33:3333 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:33:33:3333 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:33:33:3333 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:33:34:3334 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:33:34:3334 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:33:34:3334 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:33:34:3334 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:33:34:3334 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:33:34:3334 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:33:34:3334 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:33:34:3334 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:33:34:3334 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:33:34:3334 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:33:34:3334 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:33:34:3334 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:33:38:3338 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:33:38:3338 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:33:38:3338 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:33:38:3338 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:33:38:3338 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:33:38:3338 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:33:38:3338 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:33:38:3338 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:33:38:3338 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:33:38:3338 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:33:38:3338 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:33:38:3338 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:33:48:3348 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:33:48:3348 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:33:48:3348 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:33:48:3348 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:33:48:3348 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:33:48:3348 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:33:48:3348 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:33:48:3348 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:33:48:3348 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:33:48:3348 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:33:48:3348 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:33:48:3348 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:33:54:3354 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:33:54:3354 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:33:54:3354 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:33:54:3354 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:33:54:3354 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:33:54:3354 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:33:54:3354 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:33:54:3354 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:33:54:3354 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:33:54:3354 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:33:54:3354 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:33:54:3354 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:40:19:4019 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:40:19:4019 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:40:19:4019 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:40:19:4019 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:40:19:4019 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:40:19:4019 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:40:19:4019 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:40:19:4019 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:40:19:4019 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:40:19:4019 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:40:19:4019 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:40:19:4019 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:40:24:4024 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:40:24:4024 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:40:24:4024 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:40:24:4024 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:40:24:4024 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:40:24:4024 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:40:24:4024 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:40:24:4024 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:40:24:4024 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:40:24:4024 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:40:24:4024 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:40:24:4024 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-20 18:42:45:4245 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:42:45:4245 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-20 18:42:45:4245 [32minfo[39m: [32mOllama service is available[39m
+2025-04-20 18:42:45:4245 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-20 18:42:45:4245 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-20 18:42:45:4245 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-20 18:42:45:4245 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-20 18:42:45:4245 [32minfo[39m: [32m  GET /health[39m
+2025-04-20 18:42:45:4245 [32minfo[39m: [32m  POST /extract[39m
+2025-04-20 18:42:45:4245 [32minfo[39m: [32m  POST /transform[39m
+2025-04-20 18:42:45:4245 [32minfo[39m: [32m  POST /load[39m
+2025-04-20 18:42:45:4245 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-23 18:14:13:1413 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-23 18:14:13:1413 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-23 18:14:13:1413 [32minfo[39m: [32mOllama service is available[39m
+2025-04-23 18:14:13:1413 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-23 18:14:13:1413 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-23 18:14:13:1413 [32minfo[39m: [32m  GET /health[39m
+2025-04-23 18:14:13:1413 [32minfo[39m: [32m  POST /extract[39m
+2025-04-23 18:14:13:1413 [32minfo[39m: [32m  POST /transform[39m
+2025-04-23 18:14:13:1413 [32minfo[39m: [32m  POST /load[39m
+2025-04-23 18:14:13:1413 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-23 18:15:13:1513 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-23 18:15:13:1513 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-23 18:15:13:1513 [32minfo[39m: [32mOllama service is available[39m
+2025-04-23 18:15:13:1513 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-23 18:15:13:1513 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-23 18:15:13:1513 [32minfo[39m: [32m  GET /health[39m
+2025-04-23 18:15:13:1513 [32minfo[39m: [32m  POST /extract[39m
+2025-04-23 18:15:13:1513 [32minfo[39m: [32m  POST /transform[39m
+2025-04-23 18:15:13:1513 [32minfo[39m: [32m  POST /load[39m
+2025-04-23 18:15:13:1513 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-23 18:15:33:1533 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-23 18:15:33:1533 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-23 18:15:33:1533 [32minfo[39m: [32mOllama service is available[39m
+2025-04-23 18:15:33:1533 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-23 18:15:33:1533 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-23 18:15:33:1533 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-23 18:15:33:1533 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-23 18:15:33:1533 [32minfo[39m: [32m  GET /health[39m
+2025-04-23 18:15:33:1533 [32minfo[39m: [32m  POST /extract[39m
+2025-04-23 18:15:33:1533 [32minfo[39m: [32m  POST /transform[39m
+2025-04-23 18:15:33:1533 [32minfo[39m: [32m  POST /load[39m
+2025-04-23 18:15:33:1533 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-23 18:15:50:1550 [33mwarn[39m: [33mInvalid API key attempt - GET /metrics[39m
+2025-04-23 18:16:19:1619 [33mwarn[39m: [33mInvalid API key attempt - GET /metrics[39m
+2025-04-23 18:16:23:1623 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-23 18:16:33:1633 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-23 18:19:46:1946 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-23 18:19:46:1946 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-23 18:19:46:1946 [32minfo[39m: [32mOllama service is available[39m
+2025-04-23 18:19:46:1946 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-23 18:19:46:1946 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-23 18:19:46:1946 [32minfo[39m: [32m  GET /health[39m
+2025-04-23 18:19:46:1946 [32minfo[39m: [32m  POST /extract[39m
+2025-04-23 18:19:46:1946 [32minfo[39m: [32m  POST /transform[39m
+2025-04-23 18:19:46:1946 [32minfo[39m: [32m  POST /load[39m
+2025-04-23 18:19:46:1946 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-23 18:21:10:2110 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-23 19:44:07:447 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-23 19:44:07:447 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-23 19:44:07:447 [32minfo[39m: [32mOllama service is available[39m
+2025-04-23 19:44:07:447 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-23 19:44:07:447 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-23 19:44:07:447 [32minfo[39m: [32m  GET /health[39m
+2025-04-23 19:44:07:447 [32minfo[39m: [32m  POST /extract[39m
+2025-04-23 19:44:07:447 [32minfo[39m: [32m  POST /transform[39m
+2025-04-23 19:44:07:447 [32minfo[39m: [32m  POST /load[39m
+2025-04-23 19:44:07:447 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-23 19:46:07:467 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-23 19:49:50:4950 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-23 19:50:11:5011 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-23 19:50:11:5011 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-23 19:50:11:5011 [32minfo[39m: [32mOllama service is available[39m
+2025-04-23 19:50:11:5011 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-23 19:50:11:5011 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-23 19:50:11:5011 [32minfo[39m: [32m  GET /health[39m
+2025-04-23 19:50:11:5011 [32minfo[39m: [32m  POST /extract[39m
+2025-04-23 19:50:11:5011 [32minfo[39m: [32m  POST /transform[39m
+2025-04-23 19:50:11:5011 [32minfo[39m: [32m  POST /load[39m
+2025-04-23 19:50:11:5011 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-23 19:51:11:5111 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-23 19:52:04:524 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-23 19:52:04:524 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-23 19:52:04:524 [32minfo[39m: [32mOllama service is available[39m
+2025-04-23 19:52:04:524 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-23 19:52:04:524 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-23 19:52:04:524 [32minfo[39m: [32m  GET /health[39m
+2025-04-23 19:52:04:524 [32minfo[39m: [32m  POST /extract[39m
+2025-04-23 19:52:04:524 [32minfo[39m: [32m  POST /transform[39m
+2025-04-23 19:52:04:524 [32minfo[39m: [32m  POST /load[39m
+2025-04-23 19:52:04:524 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-23 19:52:16:5216 [33mwarn[39m: [33mInvalid API key attempt - GET /metrics[39m
+2025-04-23 19:58:39:5839 [33mwarn[39m: [33mMONGODB_URI environment variable is not set. Database features will be unavailable.[39m
+2025-04-23 19:58:39:5839 [33mwarn[39m: [33mAZURE_STORAGE_CONNECTION_STRING environment variable is not set. Blob storage features will be unavailable.[39m
+2025-04-23 19:58:39:5839 [33mwarn[39m: [33mMONGODB_URI not provided. Running without database connection[39m
+2025-04-23 19:58:39:5839 [32minfo[39m: [32mOllama service is available[39m
+2025-04-23 19:58:39:5839 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-23 19:58:39:5839 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-23 19:58:39:5839 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-23 19:58:39:5839 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-23 19:58:39:5839 [32minfo[39m: [32m  GET /health[39m
+2025-04-23 19:58:39:5839 [32minfo[39m: [32m  POST /extract[39m
+2025-04-23 19:58:39:5839 [32minfo[39m: [32m  POST /transform[39m
+2025-04-23 19:58:39:5839 [32minfo[39m: [32m  POST /load[39m
+2025-04-23 19:58:39:5839 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-23 19:58:59:5859 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-23 19:59:24:5924 [33mwarn[39m: [33mMONGODB_URI environment variable is not set. Database features will be unavailable.[39m
+2025-04-23 19:59:24:5924 [33mwarn[39m: [33mAZURE_STORAGE_CONNECTION_STRING environment variable is not set. Blob storage features will be unavailable.[39m
+2025-04-23 19:59:24:5924 [33mwarn[39m: [33mMONGODB_URI not provided. Running without database connection[39m
+2025-04-23 19:59:24:5924 [32minfo[39m: [32mOllama service is available[39m
+2025-04-23 19:59:24:5924 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-23 19:59:24:5924 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-23 19:59:24:5924 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-23 19:59:24:5924 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-23 19:59:24:5924 [32minfo[39m: [32m  GET /health[39m
+2025-04-23 19:59:24:5924 [32minfo[39m: [32m  POST /extract[39m
+2025-04-23 19:59:24:5924 [32minfo[39m: [32m  POST /transform[39m
+2025-04-23 19:59:24:5924 [32minfo[39m: [32m  POST /load[39m
+2025-04-23 19:59:24:5924 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-23 19:59:28:5928 [33mwarn[39m: [33mAPI key missing - GET /api/proxy?endpoint=%2Fmetrics[39m
+2025-04-23 19:59:28:5928 [33mwarn[39m: [33mAPI key missing - POST /__nextjs_original-stack-frames[39m
+2025-04-23 19:59:28:5928 [33mwarn[39m: [33mAPI key missing - POST /__nextjs_original-stack-frames[39m
+2025-04-23 19:59:28:5928 [33mwarn[39m: [33mAPI key missing - POST /__nextjs_original-stack-frames[39m
+2025-04-23 19:59:36:5936 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-23 19:59:44:5944 [33mwarn[39m: [33mMONGODB_URI environment variable is not set. Database features will be unavailable.[39m
+2025-04-23 19:59:44:5944 [33mwarn[39m: [33mAZURE_STORAGE_CONNECTION_STRING environment variable is not set. Blob storage features will be unavailable.[39m
+2025-04-23 19:59:44:5944 [33mwarn[39m: [33mMONGODB_URI not provided. Running without database connection[39m
+2025-04-23 19:59:44:5944 [32minfo[39m: [32mOllama service is available[39m
+2025-04-23 19:59:44:5944 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-23 19:59:44:5944 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-23 19:59:44:5944 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-23 19:59:44:5944 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-23 19:59:44:5944 [32minfo[39m: [32m  GET /health[39m
+2025-04-23 19:59:44:5944 [32minfo[39m: [32m  POST /extract[39m
+2025-04-23 19:59:44:5944 [32minfo[39m: [32m  POST /transform[39m
+2025-04-23 19:59:44:5944 [32minfo[39m: [32m  POST /load[39m
+2025-04-23 19:59:44:5944 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-23 20:00:32:032 [33mwarn[39m: [33mMONGODB_URI environment variable is not set. Database features will be unavailable.[39m
+2025-04-23 20:00:32:032 [33mwarn[39m: [33mAZURE_STORAGE_CONNECTION_STRING environment variable is not set. Blob storage features will be unavailable.[39m
+2025-04-23 20:00:32:032 [33mwarn[39m: [33mMONGODB_URI not provided. Running without database connection[39m
+2025-04-23 20:00:32:032 [32minfo[39m: [32mOllama service is available[39m
+2025-04-23 20:00:32:032 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-23 20:00:32:032 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-23 20:00:32:032 [32minfo[39m: [32m  GET /health[39m
+2025-04-23 20:00:32:032 [32minfo[39m: [32m  POST /extract[39m
+2025-04-23 20:00:32:032 [32minfo[39m: [32m  POST /transform[39m
+2025-04-23 20:00:32:032 [32minfo[39m: [32m  POST /load[39m
+2025-04-23 20:00:32:032 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-23 20:01:08:18 [33mwarn[39m: [33mMONGODB_URI environment variable is not set. Database features will be unavailable.[39m
+2025-04-23 20:01:08:18 [33mwarn[39m: [33mAZURE_STORAGE_CONNECTION_STRING environment variable is not set. Blob storage features will be unavailable.[39m
+2025-04-23 20:01:08:18 [33mwarn[39m: [33mMONGODB_URI not provided. Running without database connection[39m
+2025-04-23 20:01:08:18 [32minfo[39m: [32mOllama service is available[39m
+2025-04-23 20:01:08:18 [33mwarn[39m: [33mPort 3000 is already in use.[39m
+2025-04-23 20:01:08:18 [32minfo[39m: [32mAttempting to use port 3001...[39m
+2025-04-23 20:01:08:18 [32minfo[39m: [32mServer running at http://localhost:3001[39m
+2025-04-23 20:01:08:18 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-23 20:01:08:18 [32minfo[39m: [32m  GET /health[39m
+2025-04-23 20:01:08:18 [32minfo[39m: [32m  POST /extract[39m
+2025-04-23 20:01:08:18 [32minfo[39m: [32m  POST /transform[39m
+2025-04-23 20:01:08:18 [32minfo[39m: [32m  POST /load[39m
+2025-04-23 20:01:08:18 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-23 20:01:11:111 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-23 20:02:12:212 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m

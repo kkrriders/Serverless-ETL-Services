@@ -1,0 +1,51 @@
+# Versioning
+.git
+.gitignore
+.github/
+
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Build files
+.next/
+dist/
+build/
+
+# Editor files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+logs/
+*.log
+
+# Tests
+coverage/
+.nyc_output/
+tests/
+
+# Documentation
+docs/
+
+# Docker files (we'll build images separately)
+.dockerignore
+docker-compose*
+
+# Cloud configuration
+.gcloudignore
+cloudbuild.yaml
+
+# Local development files
+*.local
+etl-dashboard* 

@@ -33,9 +33,10 @@ app.use(morgan('combined', { stream: { write: message => logger.info(message.tri
 
 // Add CORS middleware
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:3001'], // Allow requests from both 3000 (backend) and 3001 (dashboard)
+  origin: config.get('cors.origins') || ['http://localhost:3000', 'http://localhost:3002', 'http://127.0.0.1:3000'], 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'X-API-Key'],
+  allowedHeaders: ['Content-Type', 'X-API-Key', 'Authorization'],
+  exposedHeaders: ['X-Total-Count'],
   credentials: true,
 }));
 
