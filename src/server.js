@@ -64,7 +64,7 @@ app.use((err, req, res, _next) => {
 });
 
 // Start the server
-const DEFAULT_PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
+const PORT = 3000;
 const MAX_RETRIES = 10; // Maximum number of ports to try
 
 // Connect to database and start server
@@ -96,37 +96,15 @@ async function startServer() {
     }
 
     // Function to try listening on a port
-    const tryListen = (port, retriesLeft) => {
-      const server = app.listen(port, () => {
-        logger.info(`Server running at http://localhost:${port}`);
-        logger.info('Available endpoints:');
-        logger.info('  GET /health');
-        logger.info('  POST /extract');
-        logger.info('  POST /transform');
-        logger.info('  POST /load');
-        logger.info('  POST /orchestrate');
-      });
-
-      server.on('error', err => {
-        if (err.code === 'EADDRINUSE') {
-          logger.warn(`Port ${port} is already in use.`);
-          if (retriesLeft > 0) {
-            const nextPort = port + 1;
-            logger.info(`Attempting to use port ${nextPort}...`);
-            tryListen(nextPort, retriesLeft - 1);
-          } else {
-            logger.error(`Could not find an available port after ${MAX_RETRIES} attempts.`);
-            process.exit(1);
-          }
-        } else {
-          logger.error(`Failed to start server: ${err.message}`);
-          process.exit(1);
-        }
-      });
-    };
-
-    // Start trying to listen
-    tryListen(DEFAULT_PORT, MAX_RETRIES);
+    app.listen(PORT, () => {
+      logger.info(`Server running at http://localhost:${PORT}`);
+      logger.info('Available endpoints:');
+      logger.info('  GET /health');
+      logger.info('  POST /extract');
+      logger.info('  POST /transform');
+      logger.info('  POST /load');
+      logger.info('  POST /orchestrate');
+    });
 
   } catch (error) {
     // This catch block might be less likely to be hit now,

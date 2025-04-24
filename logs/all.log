@@ -850,3 +850,35 @@
 2025-04-23 20:01:08:18 [32minfo[39m: [32m  POST /orchestrate[39m
 2025-04-23 20:01:11:111 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
 2025-04-23 20:02:12:212 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-24 10:08:58:858 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-24 10:08:58:858 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-24 10:08:58:858 [32minfo[39m: [32mOllama service is available[39m
+2025-04-24 10:08:58:858 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-24 10:08:58:858 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-24 10:08:58:858 [32minfo[39m: [32m  GET /health[39m
+2025-04-24 10:08:58:858 [32minfo[39m: [32m  POST /extract[39m
+2025-04-24 10:08:58:858 [32minfo[39m: [32m  POST /transform[39m
+2025-04-24 10:08:58:858 [32minfo[39m: [32m  POST /load[39m
+2025-04-24 10:08:58:858 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-24 10:19:14:1914 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
+2025-04-24 10:21:50:2150 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-24 10:21:50:2150 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-24 10:21:50:2150 [32minfo[39m: [32mOllama service is available[39m
+2025-04-24 10:21:50:2150 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-24 10:21:50:2150 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-24 10:21:50:2150 [32minfo[39m: [32m  GET /health[39m
+2025-04-24 10:21:50:2150 [32minfo[39m: [32m  POST /extract[39m
+2025-04-24 10:21:50:2150 [32minfo[39m: [32m  POST /transform[39m
+2025-04-24 10:21:50:2150 [32minfo[39m: [32m  POST /load[39m
+2025-04-24 10:21:50:2150 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-24 14:07:59:759 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-24 14:07:59:759 [32minfo[39m: [32mConnected to MongoDB[39m
+2025-04-24 14:07:59:759 [32minfo[39m: [32mOllama service is available[39m
+2025-04-24 14:07:59:759 [32minfo[39m: [32mServer running at http://localhost:3000[39m
+2025-04-24 14:07:59:759 [32minfo[39m: [32mAvailable endpoints:[39m
+2025-04-24 14:07:59:759 [32minfo[39m: [32m  GET /health[39m
+2025-04-24 14:07:59:759 [32minfo[39m: [32m  POST /extract[39m
+2025-04-24 14:07:59:759 [32minfo[39m: [32m  POST /transform[39m
+2025-04-24 14:07:59:759 [32minfo[39m: [32m  POST /load[39m
+2025-04-24 14:07:59:759 [32minfo[39m: [32m  POST /orchestrate[39m
+2025-04-24 14:09:25:925 [32minfo[39m: [32mSIGINT received, shutting down gracefully[39m
