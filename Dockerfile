@@ -1,25 +1,35 @@
-FROM node:18-slim
+FROM node:18-slim AS builder
 
 WORKDIR /app
 
-# Copy package.json files for backend 
-COPY package.json ./
+# Copy package files for dependency installation
+COPY etl-dashboard-backup/etl-dashboard/package*.json ./
 
-# Install backend dependencies
-RUN npm install
+# Install dependencies
+RUN npm ci
 
-# Copy backend source code
-COPY src ./src
-COPY serverless.yml ./
-COPY jest.config.js ./
-COPY .eslintrc.js ./
+# Copy the application code
+COPY etl-dashboard-backup/etl-dashboard/ ./
+
+# Build the Next.js application (generates the standalone output)
+RUN npm run build
+
+# Production image, copy only the necessary files
+FROM node:18-slim AS runner
+
+WORKDIR /app
 
 # Set environment to production
 ENV NODE_ENV=production
 ENV PORT=8080
 
-# Expose the backend port for Cloud Run
+# Copy standalone output and necessary files
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public
+
+# Expose the application port (matches PORT env var)
 EXPOSE 8080
 
-# Command to run the backend service
-CMD ["node", "src/server.js"] 
+# Start the application - the server.js is generated in the standalone output
+CMD ["node", "server.js"] 
